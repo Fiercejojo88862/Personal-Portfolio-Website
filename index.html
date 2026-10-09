@@ -8,19 +8,19 @@
   <link rel="icon" href="assets/logo.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#home" aria-label="Joseph Shaker home"><img class="logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>Joseph S.</span></a>
+      <a class="brand" href="index.html" aria-label="Joseph Shaker home"><img class="logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>Joseph S.</span></a>
       <nav class="site-nav" id="site-nav" aria-label="Primary">
         <ul>
-          <li><a href="#home" class="nav-link active">Home</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
       </nav>
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
@@ -30,7 +30,6 @@
   </header>
 
   <main id="main">
-    <!-- HOME -->
     <section id="home" class="hero" aria-labelledby="hero-heading">
       <div class="container hero-grid">
         <div class="hero-text">
@@ -39,8 +38,8 @@
           <p class="subtitle"><span id="typed" aria-live="polite"></span><span class="caret" aria-hidden="true">|</span></p>
           <p class="lede">Software and Data Engineering Technology undergrad in Newark, NJ. I build Linux tools, web apps, and homelab systems — C++, Node.js, Docker, and modern HTML/CSS/JS.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">View Projects</a>
-            <a class="btn btn-ghost" href="#contact">Contact Me</a>
+            <a class="btn btn-primary" href="projects.html">View Projects</a>
+            <a class="btn btn-ghost" href="contact.html">Contact Me</a>
           </div>
           <ul class="hero-meta">
             <li>📍 Aberdeen, NJ</li>
@@ -58,181 +57,12 @@
         </div>
       </div>
     </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section" aria-labelledby="about-heading">
-      <div class="container">
-        <h2 id="about-heading">About Me</h2>
-        <div class="two-col">
-          <div>
-            <p>I'm Joseph, 20, a Software and Data Engineering Technology undergraduate commuting to university in Newark, NJ. I work across software and systems: web front-ends, Python tooling, C++, and a Docker homelab.</p>
-            <p><strong>Education:</strong> B.S. Software and Data Engineering Technology (major approved June 2026). Fall 2026 courses set with advisor Ms. Reyes.</p>
-            <p><strong>Interests:</strong> Linux desktop customization (Omarchy/Hyprland), self-hosted media (Jellyfin stack), CAD in SolidWorks, DIY auto repair (Mini Cooper, Mercedes GL450), and gym training at Crunch Fitness Aberdeen.</p>
-            <div class="timeline">
-              <div class="timeline-item"><span>2026</span>Built omarchy-lock-studio (Python web customizer for lock screen)</div>
-              <div class="timeline-item"><span>2024</span>Deployed Docker media stack: Jellyfin, Radarr, qBittorrent, Prowlarr</div>
-              <div class="timeline-item"><span>2023</span>Built Squarespace fleet-booking widget (HTML/CSS)</div>
-            </div>
-          </div>
-          <aside class="info-card" aria-label="Quick facts">
-            <h3>Quick facts</h3>
-            <ul>
-              <li><strong>Laptop:</strong> ASUS Vivobook S16, 32GB / 1TB</li>
-              <li><strong>OS:</strong> Windows 11 + Arch/CachyOS (Omarchy)</li>
-              <li><strong>Phone:</strong> iPhone 13 Pro</li>
-            </ul>
-            <a class="btn btn-primary" href="#contact">Get in touch</a>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section section-alt" aria-labelledby="projects-heading">
-      <div class="container">
-        <h2 id="projects-heading">Projects</h2>
-        <p class="section-sub">Three featured builds. Use the carousel controls or keyboard arrows.</p>
-
-        <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Project showcase">
-          <div class="carousel-track" id="carousel-track">
-            <article class="project-card carousel-slide" aria-roledescription="slide" aria-label="1 of 4">
-              <img src="assets/lock-studio.png" alt="Screenshot of the omarchy lock screen customizer app" width="1853" height="1135" loading="lazy" />
-              <div class="project-body">
-                <h3>omarchy-lock-studio</h3>
-                <p>Python web app (127.0.0.1:8731) to customize the Omarchy lock screen: clock, profile + welcome line, dev quotes, MPRIS media, background picker with auto-upscale, theme text color, backup/restore. Generates <code>LockView.qml</code> preserving PAM auth.</p>
-                <p class="stack">Python · QML · HTML/CSS/JS · Linux</p>
-                <p><a href="https://github.com/Fiercejojo88862" rel="noopener" aria-label="omarchy-lock-studio on my GitHub profile">GitHub profile →</a></p>
-              </div>
-            </article>
-            <article class="project-card carousel-slide" aria-roledescription="slide" aria-label="2 of 4">
-              <img src="assets/homelab.png" alt="Screenshot of Docker homelab containers dashboard" width="941" height="566" loading="lazy" />
-              <div class="project-body">
-                <h3>Docker Media Homelab</h3>
-                <p>Self-hosted media stack with Jellyfin, Radarr, qBittorrent, and Prowlarr. Solved volume permissions, indexer API integration, and container networking on Arch Linux.</p>
-                <p class="stack">Docker Compose · Linux · Networking</p>
-                <p><a href="https://github.com/Fiercejojo88862" rel="noopener" aria-label="Homelab on my GitHub profile">GitHub profile →</a></p>
-              </div>
-            </article>
-            <article class="project-card carousel-slide" aria-roledescription="slide" aria-label="3 of 4">
-              <img src="assets/lubelogger.png" alt="Screenshot of LubeLogger garage showing my 2011 Mercedes GL450" width="1678" height="1013" loading="lazy" />
-              <div class="project-body">
-                <h3>LubeLogger — Vehicle Maintenance</h3>
-                <p>Self-hosted vehicle maintenance tracker for my Mini Cooper and Mercedes GL450: service records, oil changes, and reminders. Deployed alongside my Docker homelab.</p>
-                <p class="stack">Self-hosted · Docker · HTML/CSS</p>
-                <p><a href="https://github.com/Fiercejojo88862" rel="noopener" aria-label="LubeLogger setup on my GitHub profile">GitHub profile →</a></p>
-              </div>
-            </article>
-            <article class="project-card carousel-slide" aria-roledescription="slide" aria-label="4 of 4">
-              <img src="assets/portfolio.svg" alt="Mockup of this portfolio website on laptop and phone screens" width="800" height="450" loading="lazy" />
-              <div class="project-body">
-                <h3>This Portfolio (HTML/CSS/JS)</h3>
-                <p>Semantic HTML5, responsive CSS with media queries, accessible hamburger nav, JS carousel, validated contact form, and scroll-reveal animations. Deployed to GitHub Pages and the NJIT student server.</p>
-                <p class="stack">Semantic HTML · CSS · Vanilla JS</p>
-                <p><a href="#home" aria-label="Back to top">Back to top →</a></p>
-              </div>
-            </article>
-          </div>
-          <div class="carousel-controls">
-            <button id="prev-btn" aria-label="Previous project">‹ Prev</button>
-            <div class="dots" id="carousel-dots" role="tablist" aria-label="Choose slide"></div>
-            <button id="next-btn" aria-label="Next project">Next ›</button>
-          </div>
-        </div>
-
-        <div class="project-grid-fallback">
-          <p class="small-note">Grid view (no JS needed):</p>
-          <ul>
-            <li>omarchy-lock-studio — Python + QML lock customizer</li>
-            <li>Docker Media Homelab — Jellyfin/Radarr stack</li>
-            <li>LubeLogger — vehicle maintenance tracking</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="section" aria-labelledby="skills-heading">
-      <div class="container">
-        <h2 id="skills-heading">Skills</h2>
-        <div class="skills-grid">
-          <div class="skill-group">
-            <h3>Languages</h3>
-            <ul class="skill-list">
-              <li><span>HTML/CSS</span><div class="bar" role="img" aria-label="HTML CSS proficiency 90 percent"><i style="width:90%"></i></div></li>
-              <li><span>JavaScript / Node.js</span><div class="bar" role="img" aria-label="JavaScript proficiency 80 percent"><i style="width:80%"></i></div></li>
-              <li><span>C++</span><div class="bar" role="img" aria-label="C++ proficiency 75 percent"><i style="width:75%"></i></div></li>
-              <li><span>Python</span><div class="bar" role="img" aria-label="Python proficiency 78 percent"><i style="width:78%"></i></div></li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <h3>Systems &amp; Tools</h3>
-            <ul class="chips">
-              <li>Linux (Arch/CachyOS, Omarchy, Hyprland)</li>
-              <li>Docker / Compose</li>
-              <li>Git / GitHub</li>
-              <li>GitHub Pages</li>
-              <li>SolidWorks CAD</li>
-              <li>Jellyfin / Radarr / Prowlarr</li>
-              <li>Microsoft Office</li>
-              <li>OnlyOffice</li>
-              <li>Apple Workspace (Pages, Numbers, Keynote)</li>
-              <li>Video Editing</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <h3>Practices</h3>
-            <ul class="checklist">
-              <li>Responsive design + media queries</li>
-              <li>Semantic HTML &amp; accessibility</li>
-              <li>Form validation &amp; UX feedback</li>
-              <li>Homelab troubleshooting (permissions, APIs)</li>
-              <li>Video editing</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section section-alt" aria-labelledby="contact-heading">
-      <div class="container two-col">
-        <div>
-          <h2 id="contact-heading">Contact</h2>
-          <p>Best way to reach me is the form. I usually reply within 1–2 days.</p>
-          <ul class="contact-list">
-            <li>📧 <a href="mailto:Josephshaker2020@aol.com">Josephshaker2020@aol.com</a></li>
-            <li>💻 <a href="https://github.com/Fiercejojo88862" rel="noopener">github.com/Fiercejojo88862</a></li>
-            <li>🔗 <a href="https://www.linkedin.com/in/joseph-shaker-548a49247" rel="noopener">LinkedIn: Joseph Shaker</a></li>
-            <li>📍 Newark, NJ / Aberdeen, NJ</li>
-          </ul>
-        </div>
-        <form id="contact-form" class="contact-form" novalidate aria-describedby="form-status">
-          <div class="field">
-            <label for="name">Name *</label>
-            <input id="name" name="name" type="text" autocomplete="name" required minlength="2" />
-            <small class="error" id="name-error"></small>
-          </div>
-          <div class="field">
-            <label for="email">Email *</label>
-            <input id="email" name="email" type="email" autocomplete="email" required />
-            <small class="error" id="email-error"></small>
-          </div>
-          <div class="field">
-            <label for="message">Message *</label>
-            <textarea id="message" name="message" rows="5" required minlength="10"></textarea>
-            <small class="error" id="message-error"></small>
-          </div>
-          <button class="btn btn-primary" type="submit">Send message</button>
-          <p id="form-status" role="status" aria-live="polite"></p>
-        </form>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span id="year"></span> Joseph Michael Shaker. Built with semantic HTML, CSS, and vanilla JS.</p>
-      <p><a href="#home">Back to top ↑</a></p>
+      <p class="footer-brand"><img class="footer-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>© <span id="year"></span> Joseph Michael Shaker. Built with semantic HTML, CSS, and vanilla JS.</span></p>
+      <p><a href="#top">Back to top ↑</a></p>
     </div>
   </footer>
 

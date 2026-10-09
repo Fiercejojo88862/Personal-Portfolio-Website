@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Joseph Michael Shaker — email, GitHub, LinkedIn, and contact form." />
+  <title>Contact | Joseph Michael Shaker</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Joseph Shaker home"><img class="logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>Joseph S.</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="contact" class="section section-alt" aria-labelledby="contact-heading">
+      <div class="container two-col">
+        <div>
+          <div class="heading-row">
+            <h2 id="contact-heading">Contact</h2>
+            <img class="heading-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" />
+          </div>
+          <p>Best way to reach me is the form. I usually reply within 1–2 days.</p>
+          <ul class="contact-list">
+            <li>📧 <a href="mailto:Josephshaker2020@aol.com">Josephshaker2020@aol.com</a></li>
+            <li>💻 <a href="https://github.com/Fiercejojo88862" rel="noopener">github.com/Fiercejojo88862</a></li>
+            <li>🔗 <a href="https://www.linkedin.com/in/joseph-shaker-548a49247" rel="noopener">LinkedIn: Joseph Shaker</a></li>
+            <li>📍 Newark, NJ / Aberdeen, NJ</li>
+          </ul>
+        </div>
+        <form id="contact-form" class="contact-form" novalidate aria-describedby="form-status">
+          <div class="field">
+            <label for="name">Name *</label>
+            <input id="name" name="name" type="text" autocomplete="name" required minlength="2" />
+            <small class="error" id="name-error"></small>
+          </div>
+          <div class="field">
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+            <small class="error" id="email-error"></small>
+          </div>
+          <div class="field">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="5" required minlength="10"></textarea>
+            <small class="error" id="message-error"></small>
+          </div>
+          <button class="btn btn-primary" type="submit">Send message</button>
+          <p id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand"><img class="footer-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>© <span id="year"></span> Joseph Michael Shaker. Built with semantic HTML, CSS, and vanilla JS.</span></p>
+      <p><a href="#top">Back to top ↑</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

@@ -125,8 +125,16 @@ section { opacity: 1; }
 
 /* Footer */
 .site-footer { background: #000; color: #9db8a4; padding: 1.5rem 0; border-top: 1px solid var(--accent-dark); }
-.footer-inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.footer-inner p { margin: 0; }
+.footer-brand { display: flex; align-items: center; gap: .6rem; }
+.footer-logo { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid var(--accent-dark); flex: none; }
 .site-footer a { color: var(--accent-bright); }
+
+/* Heading with logo (contact page) */
+.heading-row { display: flex; align-items: center; gap: .8rem; }
+.heading-row h2 { margin: 0; }
+.heading-logo { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-dark); }
 
 /* Responsive */
 @media (max-width: 860px) {
