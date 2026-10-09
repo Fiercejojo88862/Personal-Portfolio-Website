@@ -32,11 +32,11 @@ a { color: var(--accent-bright); }
 .site-header {
   position: sticky; top: 0; z-index: 50;
   background: rgba(0,0,0,.96); color: #fff;
-  border-bottom: 1px solid var(--accent-dark);
+  border-bottom: 3px solid var(--accent-dark);
 }
-.header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 78px; }
 .brand { color: #fff; font-weight: 800; font-size: 1.25rem; text-decoration: none; display: inline-flex; align-items: center; gap: .6rem; }
-.logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1px solid var(--accent-dark); display: block; }
+.logo { width: 58px; height: 58px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-dark); display: block; }
 .brand-dot { color: var(--accent-bright); }
 .site-nav ul { display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0; }
 .nav-link { color: #c9e5d1; text-decoration: none; padding: .4rem .6rem; border-radius: 8px; }
@@ -132,7 +132,7 @@ section { opacity: 1; }
 @media (max-width: 860px) {
   .hero-grid, .two-col, .skills-grid { grid-template-columns: 1fr; }
   .nav-toggle { display: block; }
-  .site-nav { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #000; padding: 1rem; border-bottom: 1px solid var(--accent-dark); }
+  .site-nav { display: none; position: absolute; top: 78px; left: 0; right: 0; background: #000; padding: 1rem; border-bottom: 1px solid var(--accent-dark); }
   .site-nav.open { display: block; }
   .site-nav ul { flex-direction: column; }
 }
