@@ -35,7 +35,8 @@ a { color: var(--accent-bright); }
   border-bottom: 1px solid var(--accent-dark);
 }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.brand { color: #fff; font-weight: 800; font-size: 1.5rem; text-decoration: none; }
+.brand { color: #fff; font-weight: 800; font-size: 1.25rem; text-decoration: none; display: inline-flex; align-items: center; gap: .6rem; }
+.logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1px solid var(--accent-dark); display: block; }
 .brand-dot { color: var(--accent-bright); }
 .site-nav ul { display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0; }
 .nav-link { color: #c9e5d1; text-decoration: none; padding: .4rem .6rem; border-radius: 8px; }
