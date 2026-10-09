@@ -115,6 +115,31 @@ const barIO = new IntersectionObserver(es => {
 }, { threshold: 0.4 });
 document.querySelectorAll('.skill-list li').forEach(el => barIO.observe(el));
 
+// Animated counters (stats band on home page)
+const counters = [...document.querySelectorAll('[data-count]')];
+if (counters.length) {
+  const render = el => { el.textContent = el.dataset.count + (el.dataset.suffix || ''); };
+  if (reduceMotion) { counters.forEach(render); }
+  else {
+    const countIO = new IntersectionObserver(es => {
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        countIO.unobserve(el);
+        const target = parseInt(el.dataset.count, 10) || 0;
+        const suffix = el.dataset.suffix || '';
+        const start = performance.now(), dur = 1200;
+        (function tick(t) {
+          const p = Math.min(1, (t - start) / dur);
+          el.textContent = Math.round(target * (1 - Math.pow(2, -10 * p))) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        })(start);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(el => countIO.observe(el));
+  }
+}
+
 // Scroll reveal
 const revealIO = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
