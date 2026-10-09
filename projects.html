@@ -128,6 +128,41 @@
         </div>
       </div>
     </section>
+
+    <section class="section" aria-labelledby="notes-heading">
+      <div class="container">
+        <h2 id="notes-heading">Build notes &amp; gotchas</h2>
+        <p class="section-sub">The honest part: what broke, and what each project taught me.</p>
+        <div class="card-grid">
+          <div class="mini-card">
+            <h3>🔒 Lock studio: stale server danger</h3>
+            <p>A stale dev server once re-wrote a broken <code>LockView.qml</code> and killed my lock screen. Fix: relaunch the app (it takes over port 8731) before clicking Apply — plus backup/restore on every write.</p>
+          </div>
+          <div class="mini-card">
+            <h3>🐳 Homelab: permissions &amp; APIs</h3>
+            <p>Containers couldn't see each other's volumes until user/group IDs were mapped correctly, and the indexer needed its API key re-issued. Lesson: check identity and credentials before blaming the network.</p>
+          </div>
+          <div class="mini-card">
+            <h3>🚗 LubeLogger: real mileage</h3>
+            <p>Logging a 150,000-mile GL450 forced honest record-keeping: every oil change and repair dated, so the next owner (or future me) knows exactly what was done.</p>
+          </div>
+        </div>
+        <div class="card-grid">
+          <div class="mini-card">
+            <h3>📋 Booking widget: mobile first</h3>
+            <p>Designed phone-size first, then scaled up — date pickers and vehicle cards that stay usable on a 360px screen work everywhere.</p>
+          </div>
+          <div class="mini-card">
+            <h3>🌐 This portfolio: no frameworks</h3>
+            <p>Hand-written HTML/CSS/JS across five pages: shared stylesheet, guarded scripts per page, scroll-scrub motion, and deploys to both GitHub Pages and NJIT's server with zero build step.</p>
+          </div>
+          <div class="mini-card">
+            <h3>📚 What I'd do differently</h3>
+            <p>Start the README on day one, screenshot as I go, and pick image dimensions before writing layout code — retrofitting sizes cost the most time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
