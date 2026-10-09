@@ -73,6 +73,30 @@ if (track && dotsWrap) {
   restart();
 }
 
+// Scroll progress bar + parallax (Apple-style), skipped for reduced motion
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduceMotion) {
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+  const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
+  let ticking = false;
+  function onScroll() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    parallaxEls.forEach(el => {
+      const speed = parseFloat(el.dataset.parallax) || 0;
+      el.style.transform = `translateY(${window.scrollY * speed}px)`;
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
+  onScroll();
+}
+
 // Scroll reveal
 const revealIO = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
