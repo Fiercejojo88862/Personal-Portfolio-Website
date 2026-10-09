@@ -60,7 +60,7 @@ a { color: var(--accent-bright); }
 .btn-ghost:hover { background: rgba(34,197,94,.15); }
 .hero-meta { display: flex; gap: 1rem; flex-wrap: wrap; list-style: none; padding: 0; color: #9db8a4; font-size: .95rem; }
 .hero-card { background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; }
-.headshot { width: 100%; max-width: 280px; height: auto; aspect-ratio: 640/900; object-fit: cover; object-position: top; border-radius: var(--radius); border: 2px solid var(--accent-dark); display: block; margin: 0 auto; }
+.headshot { width: 100%; max-width: 280px; height: auto; aspect-ratio: 1/1; object-fit: cover; object-position: center 20%; border-radius: var(--radius); border: 2px solid var(--accent-dark); display: block; margin: 0 auto; }
 .hero-card-name { color: #fff; font-weight: 800; margin: .75rem 0 0; }
 .hero-card-role { color: var(--muted); margin: .25rem 0 .75rem; }
 .hero-card-tags { display: flex; gap: .4rem; justify-content: center; flex-wrap: wrap; }
