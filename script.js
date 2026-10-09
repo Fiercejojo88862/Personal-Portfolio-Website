@@ -81,13 +81,25 @@ if (!reduceMotion) {
   bar.setAttribute('aria-hidden', 'true');
   document.body.appendChild(bar);
   const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
+  const scrubEls = [...document.querySelectorAll('[data-scrub-scale]')];
+  const header = document.querySelector('.site-header');
   let ticking = false;
+  function expo(p) { return p >= 1 ? 1 : 1 - Math.pow(2, -10 * p); }
   function onScroll() {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    if (header) header.classList.toggle('scrolled', window.scrollY > 40);
     parallaxEls.forEach(el => {
       const speed = parseFloat(el.dataset.parallax) || 0;
       el.style.transform = `translateY(${window.scrollY * speed}px)`;
+    });
+    const vh = window.innerHeight;
+    scrubEls.forEach(el => {
+      const r = el.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)));
+      const e = expo(p);
+      el.style.transform = `scale(${(0.88 + 0.12 * e).toFixed(3)})`;
+      el.style.opacity = (0.25 + 0.75 * e).toFixed(3);
     });
     ticking = false;
   }
@@ -96,6 +108,12 @@ if (!reduceMotion) {
   }, { passive: true });
   onScroll();
 }
+
+// Skill bars fill when scrolled into view
+const barIO = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); barIO.unobserve(e.target); } });
+}, { threshold: 0.4 });
+document.querySelectorAll('.skill-list li').forEach(el => barIO.observe(el));
 
 // Scroll reveal
 const revealIO = new IntersectionObserver(es => {
