@@ -70,6 +70,15 @@ if (track && dotsWrap) {
     if (e.key === 'ArrowLeft') goTo(index - 1, true);
     if (e.key === 'ArrowRight') goTo(index + 1, true);
   });
+  function slideFromHash() {
+    const m = window.location.hash.match(/project-(\d+)/);
+    if (m) {
+      const i = parseInt(m[1], 10) - 1;
+      if (i >= 0 && i < slides.length) goTo(i);
+    }
+  }
+  slideFromHash();
+  window.addEventListener('hashchange', slideFromHash);
   restart();
 }
 

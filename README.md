@@ -34,7 +34,7 @@ I'm Joseph, 20, a Software and Data Engineering Technology undergraduate commuti
 
 Education: B.S. Software and Data Engineering Technology (major approved June 2026). Fall 2026 courses set with advisor Ms. Reyes.
 
-Interests: Linux desktop customization (Omarchy/Hyprland), self-hosted media (Jellyfin stack), CAD in SolidWorks, DIY auto repair (Mini Cooper, Mercedes GL450), and gym training at Crunch Fitness Aberdeen.
+Interests: Linux desktop customization (Omarchy/Hyprland), self-hosted media (Jellyfin stack), CAD in SolidWorks, DIY auto repair (Mercedes GL450), and gym training at Crunch Fitness Aberdeen.
 2026Built omarchy-lock-studio (Python web customizer for lock screen)
 2024Deployed Docker media stack: Jellyfin, Radarr, qBittorrent, Prowlarr
 2023Built Squarespace fleet-booking widget (HTML/CSS)
@@ -67,7 +67,7 @@ GitHub profile →
 Screenshot of LubeLogger vehicle maintenance tracker
 LubeLogger — Vehicle Maintenance
 
-Self-hosted vehicle maintenance tracker for my Mini Cooper and Mercedes GL450: service records, oil changes, and reminders. Deployed alongside my Docker homelab.
+Self-hosted vehicle maintenance tracking (LubeLogger): service records, costs, and reminders.
 
 Self-hosted · Docker · HTML/CSS
 

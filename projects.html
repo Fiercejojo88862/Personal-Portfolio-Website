@@ -37,7 +37,7 @@
 
         <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Project showcase">
           <div class="carousel-track" id="carousel-track">
-            <article class="project-card carousel-slide" aria-roledescription="slide" aria-label="1 of 4">
+            <article class="project-card carousel-slide" id="project-1" aria-roledescription="slide" aria-label="1 of 5">
               <img data-scrub-scale src="assets/lock-studio.png" alt="Screenshot of the omarchy lock screen customizer app" width="1853" height="1135" loading="lazy" />
               <div class="project-body">
                 <h3>omarchy-lock-studio</h3>
@@ -51,7 +51,7 @@
                 <p><a href="https://github.com/Fiercejojo88862" rel="noopener" aria-label="omarchy-lock-studio on my GitHub profile">GitHub profile →</a></p>
               </div>
             </article>
-            <article class="project-card carousel-slide" aria-roledescription="slide" aria-label="2 of 4">
+            <article class="project-card carousel-slide" id="project-2" aria-roledescription="slide" aria-label="2 of 5">
               <img data-scrub-scale src="assets/homelab.png" alt="Screenshot of Docker homelab containers dashboard" width="941" height="566" loading="lazy" />
               <div class="project-body">
                 <h3>Docker Media Homelab</h3>
@@ -65,21 +65,21 @@
                 <p><a href="https://github.com/Fiercejojo88862" rel="noopener" aria-label="Homelab on my GitHub profile">GitHub profile →</a></p>
               </div>
             </article>
-            <article class="project-card carousel-slide" aria-roledescription="slide" aria-label="3 of 4">
+            <article class="project-card carousel-slide" id="project-3" aria-roledescription="slide" aria-label="3 of 5">
               <img data-scrub-scale src="assets/lubelogger.png" alt="Screenshot of LubeLogger garage showing my 2011 Mercedes GL450" width="1678" height="1013" loading="lazy" />
               <div class="project-body">
                 <h3>LubeLogger — Vehicle Maintenance</h3>
-                <p>Self-hosted vehicle maintenance tracker for my Mini Cooper and Mercedes GL450: service records, oil changes, and reminders. Deployed alongside my Docker homelab.</p>
+                <p>LubeLogger is a self-hosted vehicle maintenance app: it logs fuel-ups, services, and repairs, tracks costs across every vehicle in the garage, and sends maintenance reminders. I run it on my own hardware, next to my Docker media stack.</p>
                 <p class="stack">Self-hosted · Docker · HTML/CSS</p>
                 <ul class="highlights">
-                  <li>Tracks my 150k-mile 2011 Mercedes GL450 and Mini Cooper</li>
+                  <li>Fuel, service, and cost tracking per vehicle</li>
                   <li>Service history, oil changes, and reminders in one garage view</li>
-                  <li>Deployed next to the media stack in my homelab</li>
+                  <li>Private by design — no subscriptions, no cloud account</li>
                 </ul>
                 <p><a href="https://github.com/Fiercejojo88862" rel="noopener" aria-label="LubeLogger setup on my GitHub profile">GitHub profile →</a></p>
               </div>
             </article>
-            <article class="project-card carousel-slide" aria-roledescription="slide" aria-label="4 of 5">
+            <article class="project-card carousel-slide" id="project-4" aria-roledescription="slide" aria-label="4 of 5">
               <img data-scrub-scale src="assets/booking-widget.svg" alt="Mockup of fleet booking widget with date picker and vehicle list" width="800" height="450" loading="lazy" />
               <div class="project-body">
                 <h3>Fleet Booking Widget (2023)</h3>
@@ -93,7 +93,7 @@
                 <p><a href="https://github.com/Fiercejojo88862" rel="noopener" aria-label="Booking widget on my GitHub profile">GitHub profile →</a></p>
               </div>
             </article>
-            <article class="project-card carousel-slide" aria-roledescription="slide" aria-label="5 of 5">
+            <article class="project-card carousel-slide" id="project-5" aria-roledescription="slide" aria-label="5 of 5">
               <img data-scrub-scale src="assets/portfolio.svg" alt="Mockup of this portfolio website on laptop and phone screens" width="800" height="450" loading="lazy" />
               <div class="project-body">
                 <h3>This Portfolio (HTML/CSS/JS)</h3>
@@ -143,8 +143,8 @@
             <p>Containers couldn't see each other's volumes until user/group IDs were mapped correctly, and the indexer needed its API key re-issued. Lesson: check identity and credentials before blaming the network.</p>
           </div>
           <div class="mini-card">
-            <h3>🚗 LubeLogger: real mileage</h3>
-            <p>Logging a 150,000-mile GL450 forced honest record-keeping: every oil change and repair dated, so the next owner (or future me) knows exactly what was done.</p>
+            <h3>🚗 LubeLogger: honest records</h3>
+            <p>A maintenance tracker only works if the records are honest: every fuel-up and repair dated, so cost-per-mile stays accurate and nothing gets forgotten.</p>
           </div>
         </div>
         <div class="card-grid">
