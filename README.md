@@ -1,4 +1,4 @@
-# Portfolio Website — Joseph Michael Shaker
+# Portfolio Website: Joseph Michael Shaker
 
 Personal portfolio for Software and Data Engineering Technology undergrad (Newark, NJ).
 Static HTML/CSS/JS. No build step. Deploys to GitHub Pages.
@@ -14,7 +14,7 @@ Static HTML/CSS/JS. No build step. Deploys to GitHub Pages.
 ```bash
 cd portfolio-websiteResponsive Web Developer|
 
-Software and Data Engineering Technology undergrad in Newark, NJ. I build Linux tools, web apps, and homelab systems — C++, Node.js, Docker, and modern HTML/CSS/JS.
+Software and Data Engineering Technology undergrad in Newark, NJ. I build Linux tools, web apps, and homelab systems: C++, Node.js, Docker, and modern HTML/CSS/JS.
 View Projects
 Contact Me
 
@@ -65,7 +65,7 @@ Docker Compose · Linux · Networking
 
 GitHub profile →
 Screenshot of LubeLogger vehicle maintenance tracker
-LubeLogger — Vehicle Maintenance
+LubeLogger: Vehicle Maintenance
 
 Self-hosted vehicle maintenance tracking (LubeLogger): service records, costs, and reminders.
 

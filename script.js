@@ -171,7 +171,7 @@ if (form) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr('email-error', 'Enter a valid email address.'); ok = false; }
     if (message.length < 10) { setErr('message-error', 'Message must be at least 10 characters.'); ok = false; }
     if (!ok) { status.textContent = 'Please fix the errors above.'; return; }
-    status.textContent = `Thanks ${name}! Your message was validated — wire this form to Formspree to receive emails.`;
+    status.textContent = `Thanks ${name}! Your message was validated, wire this form to Formspree to receive emails.`;
     form.reset();
   });
 }
