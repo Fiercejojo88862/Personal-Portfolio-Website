@@ -58,7 +58,7 @@ a { color: var(--accent-bright); }
 @keyframes blink { 50% { opacity: 0; } }
 .lede { color: #d3e8d8; max-width: 55ch; }
 .hero-actions { display: flex; gap: .75rem; margin: 1.25rem 0; flex-wrap: wrap; }
-.btn { display: inline-block; padding: .7rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 700; border: 1px solid transparent; cursor: pointer; }
+.btn { display: inline-block; padding: .7rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 700; border: 1px solid transparent; cursor: pointer; transition: transform .3s cubic-bezier(.16,1,.3,1), background .2s; will-change: transform; }
 .btn-primary { background: var(--accent); color: #04120a; }
 .btn-primary:hover, .btn-primary:focus-visible { background: var(--accent-bright); }
 .btn-ghost { border-color: var(--accent); color: #fff; }
@@ -205,6 +205,19 @@ section { opacity: 1; }
 .faq details { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: .9rem 1rem; margin: .6rem 0; }
 .faq summary { cursor: pointer; font-weight: 700; color: #fff; }
 .faq details p { margin: .6rem 0 0; }
+
+/* Spotlight glow following the cursor (JS sets --mx/--my) */
+.mini-card, .feature-card, .skill-group, .info-card, .step, .project-body { position: relative; }
+.mini-card::before, .feature-card::before, .skill-group::before, .info-card::before, .step::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; opacity: 0;
+  transition: opacity .4s; pointer-events: none;
+  background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 50%), rgba(34,197,94,.13), transparent 65%);
+}
+.mini-card:hover::before, .feature-card:hover::before, .skill-group:hover::before,
+.info-card:hover::before, .step:hover::before,
+.mini-card:focus-within::before, .feature-card:focus-within::before {
+  opacity: 1;
+}
 
 /* Responsive */
 @media (max-width: 860px) {
