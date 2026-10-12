@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Build log: dated history of Joseph Shaker's projects and this portfolio site." />
+  <title>Build Log | Joseph Michael Shaker</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Joseph Shaker home"><img class="logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>Joseph S.</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="build-log.html" class="nav-link active">Build Log</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" aria-labelledby="log-heading">
+      <div class="container">
+        <h2 id="log-heading">Build log</h2>
+        <p class="section-sub">Everything here, newest first. New entries go on top.</p>
+        <div class="timeline">
+          <div class="timeline-item"><span>Oct 2026</span>Spotlight card glow, keyboard shortcuts (1-6, /, ?), per-project case studies, homelab status board, and this log.</div>
+          <div class="timeline-item"><span>Oct 2026</span>Long-form expansion: stats band, featured work, my story, build notes, learning roadmap, FAQ.</div>
+          <div class="timeline-item"><span>Oct 2026</span>Apple-style motion: scroll progress bar, shrinking header, scroll-scrub image zoom, animated skill bars.</div>
+          <div class="timeline-item"><span>Oct 2026</span>Split the single page into five pages; added the Joseph S. logo to the header, favicon, footer, and contact page.</div>
+          <div class="timeline-item"><span>Oct 2026</span>Personal pass: real headshot and screenshots, contact links, black-with-green theme, LubeLogger project slide.</div>
+          <div class="timeline-item"><span>Oct 2026</span>Portfolio v1: hand-written HTML/CSS/JS, pushed to GitHub, live on GitHub Pages.</div>
+          <div class="timeline-item"><span>Aug 2026</span>Built omarchy-lock-studio, a Python web customizer for the Omarchy lock screen.</div>
+          <div class="timeline-item"><span>Jun 2026</span>Software and Data Engineering Technology major approved after appeal.</div>
+          <div class="timeline-item"><span>2024</span>Deployed the Docker media homelab on Arch Linux; LubeLogger joins the garage.</div>
+          <div class="timeline-item"><span>2023</span>Built a responsive fleet-booking widget in HTML and CSS.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand"><img class="footer-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>© <span id="year"></span> Joseph Michael Shaker. Built with semantic HTML, CSS, and vanilla JS.</span></p>
+      <p><a href="#top">Back to top ↑</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
