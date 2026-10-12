@@ -169,6 +169,43 @@ if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
   });
 }
 
+// Keyboard shortcuts: 1-5 switch pages, / jumps to contact, ? shows help
+(function shortcuts() {
+  const pages = ['index.html', 'about.html', 'projects.html', 'skills.html', 'contact.html'];
+  const overlay = document.createElement('div');
+  overlay.className = 'keys-overlay';
+  overlay.hidden = true;
+  overlay.innerHTML = `<div class="keys-card" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
+    <h2>Keyboard shortcuts</h2>
+    <ul>
+      <li><kbd>1</kbd>–<kbd>5</kbd> Home, About, Projects, Skills, Contact</li>
+      <li><kbd>/</kbd> Jump to the contact form</li>
+      <li><kbd>?</kbd> Toggle this panel</li>
+      <li><kbd>Esc</kbd> Close</li>
+    </ul></div>`;
+  document.body.appendChild(overlay);
+  const hint = document.createElement('button');
+  hint.className = 'keys-hint';
+  hint.textContent = '?';
+  hint.setAttribute('aria-label', 'Show keyboard shortcuts');
+  hint.addEventListener('click', () => { overlay.hidden = !overlay.hidden; });
+  document.body.appendChild(hint);
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.hidden = true; });
+  document.addEventListener('keydown', e => {
+    const tag = (document.activeElement && document.activeElement.tagName) || '';
+    const typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+    if (e.key === 'Escape') { overlay.hidden = true; return; }
+    if (e.key === '?' && !typing) { overlay.hidden = !overlay.hidden; return; }
+    if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key >= '1' && e.key <= '5') window.location.href = pages[Number(e.key) - 1];
+    if (e.key === '/') {
+      const field = document.getElementById('name');
+      if (field) { e.preventDefault(); field.focus(); }
+      else window.location.href = 'contact.html';
+    }
+  });
+})();
+
 // Scroll reveal
 const revealIO = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
