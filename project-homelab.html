@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study: Docker media homelab with Jellyfin, Radarr, qBittorrent, and Prowlarr on Arch Linux." />
+  <title>Docker Media Homelab | Case Study</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Joseph Shaker home"><img class="logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>Joseph S.</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link active">Projects</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" aria-labelledby="case-heading">
+      <div class="container">
+        <p><a href="projects.html">← All projects</a></p>
+        <div class="heading-row">
+          <h2 id="case-heading">Docker Media Homelab</h2>
+          <img class="heading-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" />
+        </div>
+        <p class="section-sub">Self-hosted media stack on Arch Linux. Built 2024. Sole builder and operator.</p>
+        <ul class="chips">
+          <li>Docker Compose</li>
+          <li>Linux</li>
+          <li>Networking</li>
+        </ul>
+        <p><img data-scrub-scale src="assets/homelab.png" alt="Screenshot of Docker homelab containers dashboard" width="941" height="566" loading="lazy" style="width:100%;height:auto;border-radius:14px;border:1px solid var(--border)" /></p>
+        <h3>What it does</h3>
+        <p>Five services running as containers: Jellyfin for streaming, Radarr for library management, qBittorrent for downloads, Prowlarr for indexer management, and LubeLogger for the garage. A private alternative to paid streaming, running on my own hardware.</p>
+        <h3>Hardest problem</h3>
+        <p>Containers could not see each other's volumes until user and group IDs were mapped correctly, and the indexer needed its API key re-issued. Lesson: check identity and credentials before blaming the network.</p>
+        <h3>Outcome</h3>
+        <p>A stack that has run since 2024 and taught me real systems administration: permissions, networking, secrets, and recovery.</p>
+        <p><a class="btn btn-primary" href="https://github.com/Fiercejojo88862" rel="noopener">GitHub profile</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand"><img class="footer-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>© <span id="year"></span> Joseph Michael Shaker. Built with semantic HTML, CSS, and vanilla JS.</span></p>
+      <p><a href="#top">Back to top ↑</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

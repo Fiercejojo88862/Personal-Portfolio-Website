@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study: LubeLogger, a self-hosted vehicle maintenance tracker in my Docker homelab." />
+  <title>LubeLogger | Case Study</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Joseph Shaker home"><img class="logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>Joseph S.</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link active">Projects</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" aria-labelledby="case-heading">
+      <div class="container">
+        <p><a href="projects.html">← All projects</a></p>
+        <div class="heading-row">
+          <h2 id="case-heading">LubeLogger: Vehicle Maintenance</h2>
+          <img class="heading-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" />
+        </div>
+        <p class="section-sub">Self-hosted garage tracker in my Docker homelab. Sole operator.</p>
+        <ul class="chips">
+          <li>Self-hosted</li>
+          <li>Docker</li>
+          <li>HTML/CSS</li>
+        </ul>
+        <p><img data-scrub-scale src="assets/lubelogger.png" alt="Screenshot of LubeLogger garage view" width="1678" height="1013" loading="lazy" style="width:100%;height:auto;border-radius:14px;border:1px solid var(--border)" /></p>
+        <h3>What it is</h3>
+        <p>LubeLogger is a self-hosted vehicle maintenance app: it logs fuel-ups, services, and repairs, tracks costs across every vehicle in the garage, and sends maintenance reminders. No subscriptions, no cloud account, private by design.</p>
+        <h3>Why I run it</h3>
+        <p>As a car enthusiast keeping a high-mileage SUV on the road, honest records matter: every fuel-up and repair dated, so cost-per-mile stays accurate and nothing gets forgotten.</p>
+        <h3>Outcome</h3>
+        <p>One garage view for the whole fleet, deployed next to the media stack in minutes using the Docker skills from the homelab build.</p>
+        <p><a class="btn btn-primary" href="https://github.com/Fiercejojo88862" rel="noopener">GitHub profile</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand"><img class="footer-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>© <span id="year"></span> Joseph Michael Shaker. Built with semantic HTML, CSS, and vanilla JS.</span></p>
+      <p><a href="#top">Back to top ↑</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

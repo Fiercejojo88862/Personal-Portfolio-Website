@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study: omarchy-lock-studio, a Python web customizer for the Omarchy lock screen." />
+  <title>omarchy-lock-studio | Case Study</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Joseph Shaker home"><img class="logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>Joseph S.</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link active">Projects</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" aria-labelledby="case-heading">
+      <div class="container">
+        <p><a href="projects.html">← All projects</a></p>
+        <div class="heading-row">
+          <h2 id="case-heading">omarchy-lock-studio</h2>
+          <img class="heading-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" />
+        </div>
+        <p class="section-sub">Python web customizer for the Omarchy lock screen. Built 2026. Sole builder.</p>
+        <ul class="chips">
+          <li>Python</li>
+          <li>QML</li>
+          <li>HTML/CSS/JS</li>
+          <li>Linux</li>
+        </ul>
+        <p><img data-scrub-scale src="assets/lock-studio.png" alt="Screenshot of the omarchy lock screen customizer app" width="1853" height="1135" loading="lazy" style="width:100%;height:auto;border-radius:14px;border:1px solid var(--border)" /></p>
+        <h3>What it does</h3>
+        <p>A local web app (served on port 8731) that customizes the Omarchy lock screen: clock, profile with editable welcome line, dev quotes, MPRIS media display, background picker with automatic upscaling, theme and custom text colors, plus backup and restore. It generates <code>LockView.qml</code> while preserving the password field and PAM authentication.</p>
+        <h3>Hardest problem</h3>
+        <p>A stale dev server once re-wrote a broken <code>LockView.qml</code> and killed the lock screen. The fix became process: relaunch the app (it takes over port 8731) before clicking Apply, and back up on every write.</p>
+        <h3>Outcome</h3>
+        <p>My daily-driver lock screen, themed end to end, with a safety net that makes experimenting free.</p>
+        <p><a class="btn btn-primary" href="https://github.com/Fiercejojo88862" rel="noopener">GitHub profile</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand"><img class="footer-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>© <span id="year"></span> Joseph Michael Shaker. Built with semantic HTML, CSS, and vanilla JS.</span></p>
+      <p><a href="#top">Back to top ↑</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
