@@ -206,6 +206,37 @@ if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
   });
 })();
 
+// Homelab status board (about page only; edit HOMELAB below to update)
+const HOMELAB = {
+  checked: 'October 9, 2026',
+  services: [
+    { name: 'Jellyfin', state: 'up', note: 'media streaming' },
+    { name: 'Radarr', state: 'up', note: 'library management' },
+    { name: 'qBittorrent', state: 'up', note: 'downloads' },
+    { name: 'Prowlarr', state: 'up', note: 'indexer management' },
+    { name: 'LubeLogger', state: 'up', note: 'garage tracker' }
+  ]
+};
+(function renderStatus() {
+  const list = document.getElementById('homelab-status');
+  if (!list) return;
+  list.innerHTML = '';
+  HOMELAB.services.forEach(s => {
+    const li = document.createElement('li');
+    const dot = document.createElement('span');
+    dot.className = 'dot' + (s.state === 'up' ? '' : ' amber');
+    dot.setAttribute('aria-hidden', 'true');
+    const name = document.createElement('b');
+    name.textContent = s.name;
+    const note = document.createElement('small');
+    note.textContent = (s.state === 'up' ? 'Running, ' : 'Down, ') + s.note;
+    li.append(dot, name, note);
+    list.appendChild(li);
+  });
+  const checked = document.getElementById('status-checked');
+  if (checked) checked.textContent = 'Status last checked by hand on ' + HOMELAB.checked + '.';
+})();
+
 // Scroll reveal
 const revealIO = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
