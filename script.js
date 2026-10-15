@@ -206,7 +206,7 @@ if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
   });
 })();
 
-// Obfuscated email (contact page only; keeps raw address out of static HTML)
+// Obfuscated email (contact page only; display stays [at][dot], address built only on click)
 (function emailObf() {
   const el = document.getElementById('email-obf');
   if (!el) return;
@@ -214,11 +214,16 @@ if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
   const domain = el.dataset.domain || '';
   const tld = el.dataset.tld || '';
   if (!user || !domain || !tld) return;
-  const addr = user + String.fromCharCode(64) + domain + String.fromCharCode(46) + tld;
+  const display = user + '[at]' + domain + '[dot]' + tld;
   const link = document.createElement('a');
-  link.href = 'mail' + 'to:' + addr;
-  link.textContent = addr;
-  link.setAttribute('aria-label', 'Email address, assembled to deter scraping');
+  link.href = '#';
+  link.textContent = display;
+  link.setAttribute('aria-label', 'Email me at ' + display);
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const addr = user + String.fromCharCode(64) + domain + String.fromCharCode(46) + tld;
+    window.location.href = 'mail' + 'to:' + addr;
+  });
   el.replaceChildren(link);
 })();
 
