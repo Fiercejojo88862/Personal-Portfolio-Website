@@ -171,14 +171,14 @@ if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
 
 // Keyboard shortcuts: 1-5 switch pages, / jumps to contact, ? shows help
 (function shortcuts() {
-  const pages = ['index.html', 'about.html', 'projects.html', 'skills.html', 'contact.html', 'build-log.html'];
+  const pages = ['index.html', 'about.html', 'projects.html', 'skills.html', 'contact.html'];
   const overlay = document.createElement('div');
   overlay.className = 'keys-overlay';
   overlay.hidden = true;
   overlay.innerHTML = `<div class="keys-card" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
     <h2>Keyboard shortcuts</h2>
     <ul>
-      <li><kbd>1</kbd>–<kbd>6</kbd> Home, About, Projects, Skills, Contact, Log</li>
+      <li><kbd>1</kbd>–<kbd>5</kbd> Home, About, Projects, Skills, Contact</li>
       <li><kbd>/</kbd> Jump to the contact form</li>
       <li><kbd>?</kbd> Toggle this panel</li>
       <li><kbd>Esc</kbd> Close</li>
@@ -197,13 +197,29 @@ if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
     if (e.key === 'Escape') { overlay.hidden = true; return; }
     if (e.key === '?' && !typing) { overlay.hidden = !overlay.hidden; return; }
     if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
-    if (e.key >= '1' && e.key <= '6') window.location.href = pages[Number(e.key) - 1];
+    if (e.key >= '1' && e.key <= '5') window.location.href = pages[Number(e.key) - 1];
     if (e.key === '/') {
       const field = document.getElementById('name');
       if (field) { e.preventDefault(); field.focus(); }
       else window.location.href = 'contact.html';
     }
   });
+})();
+
+// Obfuscated email (contact page only; keeps raw address out of static HTML)
+(function emailObf() {
+  const el = document.getElementById('email-obf');
+  if (!el) return;
+  const user = el.dataset.user || '';
+  const domain = el.dataset.domain || '';
+  const tld = el.dataset.tld || '';
+  if (!user || !domain || !tld) return;
+  const addr = user + String.fromCharCode(64) + domain + String.fromCharCode(46) + tld;
+  const link = document.createElement('a');
+  link.href = 'mail' + 'to:' + addr;
+  link.textContent = addr;
+  link.setAttribute('aria-label', 'Email address, assembled to deter scraping');
+  el.replaceChildren(link);
 })();
 
 // Homelab status board (about page only; edit HOMELAB below to update)
