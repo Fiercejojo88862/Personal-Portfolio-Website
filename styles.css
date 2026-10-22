@@ -112,6 +112,10 @@ h2 { font-size: 2rem; margin-top: 0; }
 
 /* Contact */
 .contact-list { list-style: none; padding: 0; }
+.contact-side { margin-top: 1.75rem; }
+.contact-side ul { padding-left: 1.1rem; margin: .5rem 0 .8rem; color: var(--text); }
+.contact-side li { margin-bottom: .35rem; }
+.contact-side p { margin: 0; font-size: .92rem; }
 .field { display: grid; gap: .3rem; margin-bottom: 1rem; }
 label { font-weight: 700; }
 input, textarea { padding: .7rem; border-radius: 10px; border: 1px solid var(--accent-dark); background: #000; color: var(--text); font: inherit; }
