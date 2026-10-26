@@ -6,9 +6,42 @@
   <meta name="description" content="Joseph Michael Shaker, Software and Data Engineering Technology student. Portfolio of projects, skills, and experience." />
   <title>Joseph Michael Shaker | Software & Data Engineering</title>
   <link rel="icon" href="assets/logo.png" />
+  <link rel="canonical" href="https://fiercejojo88862.github.io/Personal-Portfolio-Website/" />
+  <meta name="theme-color" content="#000000" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Joseph Michael Shaker" />
+  <meta property="og:title" content="Joseph Michael Shaker | Software &amp; Data Engineering" />
+  <meta property="og:description" content="Software and Data Engineering student in Newark, NJ building Linux tools, web apps, and Docker homelab systems." />
+  <meta property="og:url" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/" />
+  <meta property="og:image" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Joseph Michael Shaker, Software and Data Engineering" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Joseph Michael Shaker | Software &amp; Data Engineering" />
+  <meta name="twitter:description" content="Software and Data Engineering student in Newark, NJ building Linux tools, web apps, and Docker homelab systems." />
+  <meta name="twitter:image" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/og-cover.png" />
   <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Joseph Michael Shaker",
+    "url": "https://fiercejojo88862.github.io/Personal-Portfolio-Website/",
+    "image": "https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/headshot.jpg",
+    "jobTitle": "Software and Data Engineering Technology Student",
+    "description": "Software and Data Engineering Technology undergraduate building Linux tools, web apps, and self-hosted systems.",
+    "address": {"@type": "PostalAddress", "addressLocality": "Aberdeen", "addressRegion": "NJ", "addressCountry": "US"},
+    "alumniOf": {"@type": "CollegeOrUniversity", "name": "New Jersey Institute of Technology"},
+    "knowsAbout": ["C++", "Python", "Node.js", "Docker", "Linux", "HTML", "CSS", "JavaScript", "SolidWorks"],
+    "sameAs": [
+      "https://github.com/Fiercejojo88862",
+      "https://www.linkedin.com/in/joseph-shaker-548a49247"
+    ]
+  }
+  </script>
 </head>
-<body id="top">
+<body id="top" data-page="home">
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="site-header">
@@ -77,6 +110,70 @@
       </div>
     </section>
 
+    <section class="section telemetry-section" id="telemetry" aria-labelledby="telemetry-heading">
+      <div class="container">
+        <h2 id="telemetry-heading">Garage telemetry</h2>
+        <p class="section-sub">A live instrument cluster for the site. The odometer counts real visits; scroll the page to move the speedometer. Data comes from a serverless hit counter, no cookies.</p>
+
+        <div class="dash" role="group" aria-label="Site visit statistics">
+          <div class="dash-head">
+            <span class="dash-brand">JMS · TELEMETRY</span>
+            <span class="dash-status" id="dash-status">LIVE</span>
+            <a class="dash-link" href="https://github.com/Fiercejojo88862" rel="noopener">GitHub ↗</a>
+          </div>
+
+          <div class="dash-grid">
+            <div class="gauge-box">
+              <svg class="gauge" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                <path class="gauge-track" d="M42 158 A82 82 0 1 1 158 158" />
+                <path class="gauge-fill" id="speed-fill" d="M42 158 A82 82 0 1 1 158 158" />
+                <g class="gauge-needle" id="speed-needle">
+                  <line x1="100" y1="104" x2="100" y2="34" />
+                  <circle cx="100" cy="100" r="8" />
+                </g>
+              </svg>
+              <div class="gauge-readout"><b id="speed-val">0</b><span>MPH · SCROLL</span></div>
+            </div>
+
+            <div class="odo-panel">
+              <p class="odo-label">Total visits · odometer</p>
+              <div class="odometer" id="odo-total" aria-live="polite" aria-atomic="true">
+                <span class="odo-wheel"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span>
+              </div>
+              <p class="odo-sub">This page: <b id="odo-page">--</b> views</p>
+              <p class="odo-sub">Trip <b id="dash-trip">0:00</b> on page</p>
+              <div class="gear-box" aria-label="Current page gear">
+                <span class="gear-label">GEAR</span>
+                <span class="gear-track"><span>P</span><span>R</span><span>N</span><span>D</span></span>
+                <b class="gear-value" id="dash-gear">D1</b>
+              </div>
+            </div>
+
+            <div class="gauge-box">
+              <svg class="gauge" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                <path class="gauge-track" d="M42 158 A82 82 0 1 1 158 158" />
+                <path class="gauge-fill gauge-fill-amber" id="tach-fill" d="M42 158 A82 82 0 1 1 158 158" />
+                <g class="gauge-needle gauge-needle-amber" id="tach-needle">
+                  <line x1="100" y1="104" x2="100" y2="34" />
+                  <circle cx="100" cy="100" r="8" />
+                </g>
+              </svg>
+              <div class="gauge-readout"><b id="tach-val">1</b><span>×1000 RPM · PAGES</span></div>
+            </div>
+          </div>
+
+          <div class="dash-foot">
+            <div class="fuel">
+              <span class="fuel-label">FUEL · SITE EXPLORED</span>
+              <div class="fuel-track"><div class="fuel-bar" id="fuel-bar"></div></div>
+              <b id="fuel-val">0%</b>
+            </div>
+            <p class="dash-note">Odometer counts one visit per browser session. <span id="dash-pages-seen">0</span> of 5 pages explored on this device.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" aria-labelledby="featured-heading">
       <div class="container">
         <h2 id="featured-heading">Featured work</h2>
@@ -87,7 +184,7 @@
             <div>
               <h3>omarchy-lock-studio</h3>
               <p>Python web app that themes my Linux lock screen without breaking login.</p>
-              <p><a href="project-lock-studio.html">View project →</a></p>
+              <p class="card-links"><a href="project-lock-studio.html">View project →</a><a href="https://github.com/basecamp/omarchy" rel="noopener">Omarchy ↗</a></p>
             </div>
           </article>
           <article class="feature-card">
@@ -95,7 +192,7 @@
             <div>
               <h3>Docker Media Homelab</h3>
               <p>Five self-hosted services on Arch Linux, wired by hand.</p>
-              <p><a href="project-homelab.html">View project →</a></p>
+              <p class="card-links"><a href="project-homelab.html">View project →</a><a href="https://jellyfin.org/docs/" rel="noopener">Jellyfin docs ↗</a></p>
             </div>
           </article>
           <article class="feature-card">
@@ -103,7 +200,7 @@
             <div>
               <h3>LubeLogger</h3>
               <p>Self-hosted maintenance tracking: fuel, services, costs, and reminders.</p>
-              <p><a href="project-lubelogger.html">View project →</a></p>
+              <p class="card-links"><a href="project-lubelogger.html">View project →</a><a href="https://github.com/hargata/lubelog" rel="noopener">Upstream ↗</a></p>
             </div>
           </article>
         </div>
@@ -135,7 +232,10 @@
             <h3>Have an internship or project in mind?</h3>
             <p>I'm a student primarily looking for internships and junior opportunities.</p>
           </div>
-          <a class="btn btn-primary" href="contact.html">Get in touch</a>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="contact.html">Get in touch</a>
+            <a class="btn btn-ghost" href="projects.html#github-heading">Public repos</a>
+          </div>
         </div>
       </div>
     </section>
@@ -144,7 +244,8 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p class="footer-brand"><img class="footer-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>© <span id="year"></span> Joseph Michael Shaker. Built with semantic HTML, CSS, and vanilla JS.</span></p>
-      <p><a href="#top">Back to top ↑</a></p>
+      <p class="footer-links"><a href="#top">Back to top ↑</a></p>
+      <p class="visit-chip-wrap"><a class="visit-chip" href="index.html#telemetry" aria-label="Site odometer: total visits">ODOMETER <b data-visit-total>--</b> VISITS</a></p>
     </div>
   </footer>
 

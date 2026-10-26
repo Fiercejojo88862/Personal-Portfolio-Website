@@ -94,3 +94,15 @@ Or open `index.html` directly in a browser.
 ## Notes
 - Project images are inline SVGs in `assets/` (no external deps).
 - Contact form validates client-side only; connect Formspree for real delivery.
+
+## Site telemetry (visitor counter)
+- `index.html#telemetry` shows a car-style instrument cluster: odometer = total visits, speedometer = scroll depth, tachometer = pages seen this session, fuel = share of the 5 main pages explored.
+- Counts come from [abacus.jasoncameron.dev](https://abacus.jasoncameron.dev), a free serverless hit counter (no cookies, no account). Namespace: `fiercejojo88862-portfolio`; keys: `site` and `page-<slug>`.
+- Total visits increment once per browser session. Reset/inspect with:
+  `curl https://abacus.jasoncameron.dev/get/fiercejojo88862-portfolio/site`
+- The footer odometer chip on every page reads the same total.
+- To swap counters, edit the `TELEMETRY` object at the bottom of `script.js`.
+
+## Social preview / SEO
+- `assets/og-cover.png` (1200×630) is the link preview image.
+- Every page has canonical, Open Graph, Twitter Card, and JSON-LD `Person` metadata.

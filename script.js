@@ -287,3 +287,150 @@ if (form) {
 
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ============================================================
+   Site telemetry: serverless hit counter + car instrument cluster
+   Counter: abacus.jasoncameron.dev (no cookies, no account)
+   ============================================================ */
+const TELEMETRY = {
+  api: 'https://abacus.jasoncameron.dev',
+  ns: 'fiercejojo88862-portfolio',
+  totalKey: 'site',
+  pages: ['home', 'about', 'projects', 'skills', 'contact']
+};
+const PAGE_GEAR = { home: 1, about: 2, projects: 3, skills: 4, contact: 5, 'lock-studio': 3, homelab: 3, lubelogger: 3 };
+const TELEM_PAGE = document.body.dataset.page || 'home';
+
+function safeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function safeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+function sessionGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+function sessionSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+
+async function counterRequest(kind, key) {
+  const res = await fetch(`${TELEMETRY.api}/${kind}/${TELEMETRY.ns}/${key}`, { cache: 'no-store' });
+  if (!res.ok) throw new Error('counter ' + res.status);
+  const data = await res.json();
+  return Number(data.value) || 0;
+}
+
+function pagesSeen() {
+  let seen = [];
+  try { seen = JSON.parse(safeGet('jms-pages-seen') || '[]'); } catch (e) { seen = []; }
+  if (!Array.isArray(seen)) seen = [];
+  if (!seen.includes(TELEM_PAGE)) { seen.push(TELEM_PAGE); safeSet('jms-pages-seen', JSON.stringify(seen)); }
+  return seen;
+}
+
+function buildOdometer(el, digits) {
+  el.innerHTML = '';
+  for (let i = 0; i < digits; i++) {
+    const wheel = document.createElement('span');
+    wheel.className = 'odo-wheel' + (i === 0 ? ' is-leading' : '');
+    for (let d = 0; d <= 9; d++) {
+      const cell = document.createElement('span');
+      cell.textContent = String(d);
+      wheel.appendChild(cell);
+    }
+    el.appendChild(wheel);
+  }
+}
+
+function setOdometer(el, value) {
+  const wheels = [...el.querySelectorAll('.odo-wheel')];
+  if (!wheels.length) return;
+  const str = String(Math.max(0, value)).padStart(wheels.length, '0').slice(-wheels.length);
+  wheels.forEach((wheel, i) => {
+    wheel.querySelector('span').style.transform = `translateY(-${Number(str[i]) * 1.5}em)`;
+    wheel.classList.toggle('is-leading', str[i] === '0' && i < wheels.length - 1);
+  });
+}
+
+function setGauge(fillEl, needleEl, pct) {
+  const p = Math.min(1, Math.max(0, pct));
+  if (fillEl) fillEl.style.strokeDashoffset = String(386.4 * (1 - p));
+  if (needleEl) needleEl.style.transform = `rotate(${225 + p * 270}deg)`;
+}
+
+function initTelemetry() {
+  const dash = document.getElementById('telemetry');
+  const chipTotals = document.querySelectorAll('[data-visit-total]');
+  if (!dash && !chipTotals.length) return;
+
+  const seen = pagesSeen();
+  const odo = document.getElementById('odo-total');
+  const pageViewsEl = document.getElementById('odo-page');
+  const statusEl = document.getElementById('dash-status');
+
+  let total = null;
+  (async () => {
+    try {
+      const [totalValue, pageViews] = await Promise.all([
+        sessionGet('jms-site-counted')
+          ? counterRequest('get', TELEMETRY.totalKey)
+          : counterRequest('hit', TELEMETRY.totalKey),
+        counterRequest('hit', 'page-' + TELEM_PAGE)
+      ]);
+      total = totalValue;
+      sessionSet('jms-site-counted', '1');
+      if (pageViewsEl) pageViewsEl.textContent = pageViews.toLocaleString();
+      updateTotals(total);
+    } catch (err) {
+      if (statusEl) { statusEl.textContent = 'OFFLINE'; statusEl.classList.add('is-offline'); }
+      chipTotals.forEach(el => { el.textContent = '--'; });
+    }
+  })();
+
+  function updateTotals(n) {
+    if (odo) setOdometer(odo, n);
+    chipTotals.forEach(el => { el.textContent = n.toLocaleString(); });
+    if (statusEl && total !== null) { statusEl.textContent = 'LIVE'; statusEl.classList.remove('is-offline'); }
+  }
+
+  if (!dash) return;
+
+  if (odo) buildOdometer(odo, 6);
+  const speedFill = document.getElementById('speed-fill');
+  const speedNeedle = document.getElementById('speed-needle');
+  const speedVal = document.getElementById('speed-val');
+  const tachFill = document.getElementById('tach-fill');
+  const tachNeedle = document.getElementById('tach-needle');
+  const tachVal = document.getElementById('tach-val');
+  const fuelBar = document.getElementById('fuel-bar');
+  const fuelVal = document.getElementById('fuel-val');
+  const gearVal = document.getElementById('dash-gear');
+  const tripVal = document.getElementById('dash-trip');
+  const pagesSeenEl = document.getElementById('dash-pages-seen');
+
+  const seenMain = seen.filter(p => TELEMETRY.pages.includes(p)).length;
+  const seenRatio = seenMain / TELEMETRY.pages.length;
+  if (tachVal) tachVal.textContent = String(seenMain);
+  setGauge(tachFill, tachNeedle, seenRatio);
+  if (fuelBar) fuelBar.style.width = (seenRatio * 100) + '%';
+  if (fuelVal) fuelVal.textContent = Math.round(seenRatio * 100) + '%';
+  if (pagesSeenEl) pagesSeenEl.textContent = String(seenMain);
+  if (gearVal) gearVal.textContent = 'D' + (PAGE_GEAR[TELEM_PAGE] || 1);
+
+  let ticking = false;
+  let maxDepth = 0;
+  function updateSpeed() {
+    ticking = false;
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - window.innerHeight;
+    const depth = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 100;
+    maxDepth = Math.max(maxDepth, depth);
+    setGauge(speedFill, speedNeedle, maxDepth / 100);
+    if (speedVal) speedVal.textContent = String(Math.round(maxDepth));
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(updateSpeed); }
+  }, { passive: true });
+  updateSpeed();
+
+  const start = Date.now();
+  setInterval(() => {
+    const sec = Math.floor((Date.now() - start) / 1000);
+    if (tripVal) tripVal.textContent = `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
+  }, 1000);
+}
+
+initTelemetry();
