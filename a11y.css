@@ -1,0 +1,291 @@
+/* ============================================================
+   a11y.css — accessibility control panel + feature styles
+   Self-contained: remove this file and its two tags to revert.
+   Settings live on <html> as classes + a root font-size.
+   ============================================================ */
+
+/* ---------- Screen-reader only text ---------- */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Floating trigger button ---------- */
+.a11y-btn {
+  position: fixed;
+  left: 1rem; bottom: 1rem;
+  z-index: 94;
+  width: 3rem; height: 3rem;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--accent-dark);
+  background: var(--card);
+  color: var(--accent-bright);
+  cursor: pointer;
+  transition: transform .25s cubic-bezier(.16,1,.3,1), border-color .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.a11y-btn:hover, .a11y-btn:focus-visible {
+  border-color: var(--accent-bright);
+  box-shadow: 0 0 0 3px rgba(34,197,94,.25), 0 0 24px rgba(74,222,128,.35);
+  transform: translateY(-2px);
+}
+.a11y-btn svg { width: 1.6rem; height: 1.6rem; display: block; }
+
+/* ---------- Panel ---------- */
+.a11y-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 97;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0,0,0,.78);
+}
+.a11y-overlay[hidden] { display: none; }
+.a11y-card {
+  position: relative;
+  width: min(26rem, 100%);
+  max-height: 88vh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: var(--card);
+  border: 1px solid var(--accent-dark);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem 1.4rem;
+  box-shadow: 0 30px 70px rgba(0,0,0,.7);
+}
+.a11y-card h2 {
+  margin: 0 0 .25rem;
+  font-size: 1.15rem;
+  color: #fff;
+}
+.a11y-card .a11y-hint {
+  margin: 0 0 1rem;
+  font-size: .85rem;
+  color: var(--muted);
+}
+.a11y-close {
+  position: absolute;
+  top: .8rem; right: .8rem;
+  width: 2.2rem; height: 2.2rem;
+  display: grid; place-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0a120c;
+  color: var(--text);
+  cursor: pointer;
+}
+.a11y-close:hover, .a11y-close:focus-visible {
+  border-color: var(--accent-bright);
+  color: var(--accent-bright);
+}
+.a11y-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .7rem 0;
+  border-top: 1px solid var(--border);
+}
+.a11y-row:first-of-type { border-top: 0; }
+.a11y-copy { display: block; }
+.a11y-row .a11y-label { display: block; font-weight: 700; color: var(--text); }
+.a11y-row .a11y-desc { display: block; font-weight: 400; font-size: .82rem; color: var(--muted); }
+
+/* Switch */
+.a11y-switch {
+  flex: none;
+  position: relative;
+  width: 3.2rem; height: 1.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent-dark);
+  background: #0a120c;
+  cursor: pointer;
+  transition: background .25s ease, border-color .25s ease;
+}
+.a11y-switch::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: .25rem;
+  width: 1.15rem; height: 1.15rem;
+  border-radius: 50%;
+  background: #6d8c77;
+  transform: translateY(-50%);
+  transition: left .25s cubic-bezier(.16,1,.3,1), background .25s ease;
+}
+.a11y-switch[aria-checked="true"] { background: var(--accent-dark); border-color: var(--accent-bright); }
+.a11y-switch[aria-checked="true"]::after { left: calc(100% - 1.4rem); background: #04120a; }
+.a11y-switch:focus-visible { outline: 3px solid var(--accent-bright); outline-offset: 3px; }
+
+/* Text size stepper */
+.a11y-stepper { display: flex; align-items: center; gap: .4rem; flex: none; }
+.a11y-stepper button {
+  width: 2.2rem; height: 2.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--accent-dark);
+  background: #0a120c;
+  color: var(--accent-bright);
+  font-weight: 800;
+  cursor: pointer;
+}
+.a11y-stepper button:hover { border-color: var(--accent-bright); }
+.a11y-stepper output {
+  min-width: 3.4rem;
+  text-align: center;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: .85rem;
+  color: var(--accent-bright);
+}
+.a11y-reset {
+  margin-top: 1rem;
+  width: 100%;
+  padding: .65rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--accent-dark);
+  background: transparent;
+  color: var(--accent-bright);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.a11y-reset:hover { background: rgba(34,197,94,.14); }
+
+/* ============================================================
+   Feature: bigger / smaller text (html font-size is set by JS)
+   ============================================================ */
+
+/* ---------- Feature: high contrast ---------- */
+html.a11y-contrast {
+  --text: #ffffff;
+  --muted: #e8f6ec;
+  --border: #5ee9a0;
+  --card: #000000;
+  --bg2: #000000;
+  --accent: #3ef07f;
+  --accent-dark: #33d672;
+  --accent-bright: #9dffc4;
+}
+html.a11y-contrast body { background: #000; }
+html.a11y-contrast body::before,
+html.a11y-contrast .fx-cursor { display: none; }
+html.a11y-contrast .hero { background: linear-gradient(180deg, #000, #032313); }
+html.a11y-contrast .hero h1 {
+  background: none !important;
+  -webkit-text-fill-color: #fff !important;
+  color: #fff !important;
+  animation: none !important;
+}
+html.a11y-contrast .site-header {
+  background: #000;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-bottom-color: var(--accent-bright);
+}
+html.a11y-contrast .section-alt,
+html.a11y-contrast .ticker,
+html.a11y-contrast .cta-banner,
+html.a11y-contrast .repo-card {
+  background: #000;
+}
+html.a11y-contrast .mini-card,
+html.a11y-contrast .feature-card,
+html.a11y-contrast .info-card,
+html.a11y-contrast .skill-group,
+html.a11y-contrast .step,
+html.a11y-contrast .stats-band,
+html.a11y-contrast .project-card,
+html.a11y-contrast .contact-form {
+  border-width: 2px;
+  border-color: var(--accent-dark);
+}
+html.a11y-contrast a:not(.btn):not(.visit-chip) { text-decoration: underline; text-underline-offset: .18em; }
+html.a11y-contrast .hero-card-tags span,
+html.a11y-contrast .chips li,
+html.a11y-contrast .badge,
+html.a11y-contrast .gear-value {
+  background: #0a2a18;
+  color: #eafff1;
+  border-color: var(--accent-bright);
+}
+html.a11y-contrast .dash {
+  background: #000;
+  box-shadow: inset 0 0 0 1px #1e4a30;
+}
+html.a11y-contrast .dash::after { display: none; }
+html.a11y-contrast .odo-label,
+html.a11y-contrast .odo-sub,
+html.a11y-contrast .dash-note,
+html.a11y-contrast .fuel-label,
+html.a11y-contrast .gear-label,
+html.a11y-contrast .gauge-readout span,
+html.a11y-contrast .dash-link,
+html.a11y-contrast .site-footer {
+  color: #dff5e7;
+}
+html.a11y-contrast .gauge-track { stroke: #2c5c3f; }
+html.a11y-contrast .gear-track span { color: #7fb894; }
+html.a11y-contrast .gear-track span.on { color: #b6ffd6; }
+html.a11y-contrast :focus-visible { outline-width: 4px; }
+html.a11y-contrast .skip-link { background: #000; color: #fff; border: 2px solid var(--accent-bright); }
+
+/* ---------- Feature: underline links ---------- */
+html.a11y-underline a:not(.btn):not(.brand):not(.nav-link):not(.repo-card):not(.visit-chip) {
+  text-decoration: underline;
+  text-underline-offset: .18em;
+  text-decoration-thickness: 1px;
+}
+html.a11y-underline .nav-link { text-decoration: underline; text-underline-offset: .3em; }
+
+/* ---------- Feature: readable spacing + clearer font ---------- */
+html.a11y-readable body {
+  font-family: Verdana, Tahoma, "DejaVu Sans", system-ui, sans-serif;
+  line-height: 1.9;
+  letter-spacing: .02em;
+  word-spacing: .06em;
+}
+html.a11y-readable p,
+html.a11y-readable li { max-width: 74ch; }
+html.a11y-readable h1, html.a11y-readable h2, html.a11y-readable h3 { letter-spacing: 0; line-height: 1.25; }
+html.a11y-readable .nav-link { padding-block: .55rem; }
+
+/* ---------- Feature: pause animation ---------- */
+html.a11y-calm { scroll-behavior: auto !important; }
+html.a11y-calm *,
+html.a11y-calm *::before,
+html.a11y-calm *::after {
+  animation-duration: 1ms !important;
+  animation-delay: 0ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 1ms !important;
+  transition-delay: 0ms !important;
+  scroll-behavior: auto !important;
+}
+html.a11y-calm .ticker-track { animation: none !important; transform: none !important; }
+html.a11y-calm .fx-cursor { display: none !important; }
+html.a11y-calm body::before { animation: none !important; }
+html.a11y-calm .hero-card { animation: none !important; translate: 0 0 !important; }
+html.a11y-calm .hero h1 { animation: none !important; background-position: 0 0 !important; }
+html.a11y-calm .hero h1 .fx-word,
+html.a11y-calm .hero-card-tags span,
+html.a11y-calm .hero-text > * { animation: none !important; opacity: 1 !important; transform: none !important; }
+html.a11y-calm .reveal,
+html.a11y-calm .fx-stagger > * { opacity: 1 !important; transform: none !important; }
+html.a11y-calm .timeline-item::before { transform: scaleY(1) !important; }
+html.a11y-calm .section h2::after,
+html.a11y-calm .heading-row h2::after { transform: scaleX(1) !important; }
+html.a11y-calm .gauge-needle,
+html.a11y-calm .gauge-fill,
+html.a11y-calm .odo-stack,
+html.a11y-calm .fuel-bar { transition: none !important; }
+html.a11y-calm .fx-tilt.fx-tilting { transform: none !important; }
+
+@media (max-width: 480px) {
+  .a11y-btn { left: .65rem; bottom: .65rem; width: 2.75rem; height: 2.75rem; }
+  .a11y-card { padding: 1rem; }
+}

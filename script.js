@@ -98,6 +98,14 @@ if (!reduceMotion) {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
     if (header) header.classList.toggle('scrolled', window.scrollY > 40);
+    // Respect the accessibility panel's "pause animations" setting
+    const calm = document.documentElement.classList.contains('a11y-calm');
+    if (calm) {
+      parallaxEls.forEach(el => { el.style.transform = ''; });
+      scrubEls.forEach(el => { el.style.transform = ''; el.style.opacity = ''; });
+      ticking = false;
+      return;
+    }
     parallaxEls.forEach(el => {
       const speed = parseFloat(el.dataset.parallax) || 0;
       el.style.transform = `translateY(${window.scrollY * speed}px)`;
@@ -439,9 +447,13 @@ function initTelemetry() {
 
   function paintSpeed() {
     // Rise quickly with the scroll, then coast back down once scrolling stops.
-    const rate = speedTarget > speedShown ? 0.22 : 0.055;
-    speedShown += (speedTarget - speedShown) * rate;
-    if (Math.abs(speedTarget - speedShown) < 0.2) speedShown = speedTarget;
+    if (document.documentElement.classList.contains('a11y-calm')) {
+      speedShown = speedTarget;          // no easing when animations are paused
+    } else {
+      const rate = speedTarget > speedShown ? 0.22 : 0.055;
+      speedShown += (speedTarget - speedShown) * rate;
+      if (Math.abs(speedTarget - speedShown) < 0.2) speedShown = speedTarget;
+    }
     setGauge(speedFill, speedNeedle, speedShown / 100);
     if (speedVal) speedVal.textContent = String(Math.round(speedShown));
 
