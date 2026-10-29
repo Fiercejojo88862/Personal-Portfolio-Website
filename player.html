@@ -135,7 +135,7 @@
     <div class="frame">
       <div id="player"></div>
       <div class="fallback" id="fallback" hidden>
-        <p>The embed was blocked, so autoplay can't start here.</p>
+        <p id="fallback-msg">The embed was blocked, so autoplay can't start here.</p>
         <p><a id="yt-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Open it on YouTube instead</a></p>
       </div>
     </div>
@@ -150,17 +150,19 @@
 
   <script>
   (function () {
-    /* ?v=<video id>&name=<path label>&note=<top-right text>&title=<tab title> */
+    /* ?v=<video id>&name=<path label>&note=<top-right text>&title=<tab title>&t=<start seconds> */
     var params = new URLSearchParams(window.location.search);
     var VIDEO = /^[A-Za-z0-9_-]{11}$/.test(params.get('v') || '') ? params.get('v') : 'dQw4w9WgXcQ';
     var NAME = (params.get('name') || 'rickroll').slice(0, 40);
     var NOTE = (params.get('note') || 'you were warned').slice(0, 40);
     var TITLE = (params.get('title') || 'Never gonna give you up').slice(0, 80);
+    var START = parseInt(params.get('t') || params.get('start') || '0', 10);
+    if (!isFinite(START) || START < 0) START = 0;
 
     document.title = TITLE;
     document.getElementById('path').textContent = '~/' + NAME;
     document.getElementById('note').textContent = NOTE;
-    document.getElementById('yt-link').href = 'https://www.youtube.com/watch?v=' + VIDEO;
+    document.getElementById('yt-link').href = 'https://www.youtube.com/watch?v=' + VIDEO + (START ? '&t=' + START + 's' : '');
 
     var player = null;
     var unmuted = false;
@@ -194,6 +196,7 @@
         playerVars: {
           autoplay: 1,
           mute: 1,               // start muted: this part is never blocked
+          start: START,
           controls: 1,
           rel: 0,
           playsinline: 1,
@@ -207,6 +210,12 @@
           },
           onStateChange: function (e) {
             if (e.data === YT.PlayerState.PLAYING) attemptUnmute();
+          },
+          onError: function () {
+            /* 101/150 = the owner disabled embedding; offer the real link. */
+            document.getElementById('fallback-msg').textContent =
+              'This video does not allow embedding, so open it on YouTube.';
+            fallback.hidden = false;
           }
         }
       });

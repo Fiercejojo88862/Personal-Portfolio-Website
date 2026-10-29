@@ -189,8 +189,8 @@
     if (name.toLowerCase() === 'cat') {
       line('meow.', 'ok');
       line('cat: cat is not a file. opening the original nyan cat instead...', 'muted');
-      if (!openPlayer('QH2-TGUlwu4', 'nyan-cat', 'nyan nyan nyan', 'Nyan Cat [original]')) {
-        line('popup blocked - open player.html?v=QH2-TGUlwu4 manually.', 'err');
+      if (!openPlayer('2yJgwwDcgV8', 'nyan-cat', 'nyan nyan nyan', 'Nyan Cat! [Official]', 1)) {
+        line('popup blocked - open player.html?v=2yJgwwDcgV8 manually.', 'err');
       }
       return;
     }
@@ -323,11 +323,12 @@
     }
   }
 
-  function openPlayer(videoId, name, note, title) {
+  function openPlayer(videoId, name, note, title, start) {
     var url = 'player.html?v=' + encodeURIComponent(videoId) +
       '&name=' + encodeURIComponent(name || 'rickroll') +
       '&note=' + encodeURIComponent(note || '') +
       '&title=' + encodeURIComponent(title || '');
+    if (start) url += '&t=' + encodeURIComponent(start);
     var win = window.open(url, '_blank');
     if (win) {
       try { win.opener = null; } catch (e) {}
