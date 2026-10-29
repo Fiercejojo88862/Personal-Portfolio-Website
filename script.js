@@ -326,11 +326,16 @@ function buildOdometer(el, digits) {
   for (let i = 0; i < digits; i++) {
     const wheel = document.createElement('span');
     wheel.className = 'odo-wheel' + (i === 0 ? ' is-leading' : '');
+    // One stack per wheel: translating the whole stack (not a single digit)
+    // is what makes the 0-9 strip roll inside the 1.5em window.
+    const stack = document.createElement('span');
+    stack.className = 'odo-stack';
     for (let d = 0; d <= 9; d++) {
       const cell = document.createElement('span');
       cell.textContent = String(d);
-      wheel.appendChild(cell);
+      stack.appendChild(cell);
     }
+    wheel.appendChild(stack);
     el.appendChild(wheel);
   }
 }
@@ -340,7 +345,8 @@ function setOdometer(el, value) {
   if (!wheels.length) return;
   const str = String(Math.max(0, value)).padStart(wheels.length, '0').slice(-wheels.length);
   wheels.forEach((wheel, i) => {
-    wheel.querySelector('span').style.transform = `translateY(-${Number(str[i]) * 1.5}em)`;
+    const stack = wheel.querySelector('.odo-stack') || wheel.querySelector('span');
+    if (stack) stack.style.transform = `translateY(-${Number(str[i]) * 1.5}em)`;
     wheel.classList.toggle('is-leading', str[i] === '0' && i < wheels.length - 1);
   });
 }
@@ -411,15 +417,33 @@ function initTelemetry() {
   if (gearVal) gearVal.textContent = 'D' + (PAGE_GEAR[TELEM_PAGE] || 1);
 
   let ticking = false;
-  let maxDepth = 0;
+  let speedShown = 0;
+  let speedTarget = 0;
+  let speedRaf = null;
+  let coastTimer = null;
+
+  function paintSpeed() {
+    // Rise quickly with the scroll, then coast back down once scrolling stops.
+    const rate = speedTarget > speedShown ? 0.22 : 0.055;
+    speedShown += (speedTarget - speedShown) * rate;
+    if (Math.abs(speedTarget - speedShown) < 0.2) speedShown = speedTarget;
+    setGauge(speedFill, speedNeedle, speedShown / 100);
+    if (speedVal) speedVal.textContent = String(Math.round(speedShown));
+    if (speedShown !== speedTarget) speedRaf = requestAnimationFrame(paintSpeed);
+    else speedRaf = null;
+  }
+  function kickSpeed() { if (!speedRaf) speedRaf = requestAnimationFrame(paintSpeed); }
+
   function updateSpeed() {
     ticking = false;
     const doc = document.documentElement;
     const max = doc.scrollHeight - window.innerHeight;
     const depth = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 100;
-    maxDepth = Math.max(maxDepth, depth);
-    setGauge(speedFill, speedNeedle, maxDepth / 100);
-    if (speedVal) speedVal.textContent = String(Math.round(maxDepth));
+    speedTarget = depth;
+    kickSpeed();
+    // No scroll for 450ms: let the needle fall back toward zero
+    clearTimeout(coastTimer);
+    coastTimer = setTimeout(() => { speedTarget = 0; kickSpeed(); }, 450);
   }
   window.addEventListener('scroll', () => {
     if (!ticking) { ticking = true; requestAnimationFrame(updateSpeed); }
