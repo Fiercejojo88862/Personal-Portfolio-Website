@@ -298,7 +298,6 @@ const TELEMETRY = {
   totalKey: 'site',
   pages: ['home', 'about', 'projects', 'skills', 'contact']
 };
-const PAGE_GEAR = { home: 1, about: 2, projects: 3, skills: 4, contact: 5, 'lock-studio': 3, homelab: 3, lubelogger: 3 };
 const TELEM_PAGE = document.body.dataset.page || 'home';
 
 function safeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -364,21 +363,20 @@ function initTelemetry() {
 
   const seen = pagesSeen();
   const odo = document.getElementById('odo-total');
-  const pageViewsEl = document.getElementById('odo-page');
   const statusEl = document.getElementById('dash-status');
 
   let total = null;
   (async () => {
     try {
-      const [totalValue, pageViews] = await Promise.all([
+      const [totalValue] = await Promise.all([
         sessionGet('jms-site-counted')
           ? counterRequest('get', TELEMETRY.totalKey)
           : counterRequest('hit', TELEMETRY.totalKey),
-        counterRequest('hit', 'page-' + TELEM_PAGE)
+        // still tally the per-page hits even though the number is no longer shown
+        counterRequest('hit', 'page-' + TELEM_PAGE).catch(() => 0)
       ]);
       total = totalValue;
       sessionSet('jms-site-counted', '1');
-      if (pageViewsEl) pageViewsEl.textContent = pageViews.toLocaleString();
       updateTotals(total);
     } catch (err) {
       if (statusEl) { statusEl.textContent = 'OFFLINE'; statusEl.classList.add('is-offline'); }
@@ -414,13 +412,30 @@ function initTelemetry() {
   if (fuelBar) fuelBar.style.width = (seenRatio * 100) + '%';
   if (fuelVal) fuelVal.textContent = Math.round(seenRatio * 100) + '%';
   if (pagesSeenEl) pagesSeenEl.textContent = String(seenMain);
-  if (gearVal) gearVal.textContent = 'D' + (PAGE_GEAR[TELEM_PAGE] || 1);
+
+  // Gear follows scroll direction: D1-D5 downhill, R uphill, N coasting, P parked
+  const gearLetters = [...document.querySelectorAll('.gear-track span')];
+  let gearNow = '';
+  function setGear(g) {
+    if (g === gearNow) return;
+    gearNow = g;
+    if (gearVal) {
+      gearVal.textContent = g;
+      gearVal.classList.remove('gear-shift');
+      void gearVal.offsetWidth;
+      gearVal.classList.add('gear-shift');
+    }
+    gearLetters.forEach(el => el.classList.toggle('on', el.textContent === g[0]));
+  }
+  setGear('P');
 
   let ticking = false;
   let speedShown = 0;
   let speedTarget = 0;
   let speedRaf = null;
   let coastTimer = null;
+  let direction = 0;        // 1 down, -1 up, 0 stationary
+  let lastY = window.scrollY;
 
   function paintSpeed() {
     // Rise quickly with the scroll, then coast back down once scrolling stops.
@@ -429,6 +444,12 @@ function initTelemetry() {
     if (Math.abs(speedTarget - speedShown) < 0.2) speedShown = speedTarget;
     setGauge(speedFill, speedNeedle, speedShown / 100);
     if (speedVal) speedVal.textContent = String(Math.round(speedShown));
+
+    if (speedShown <= 0.5) setGear('P');
+    else if (direction > 0) setGear('D' + (1 + Math.min(4, Math.floor(speedShown / 20))));
+    else if (direction < 0) setGear('R');
+    else setGear('N');
+
     if (speedShown !== speedTarget) speedRaf = requestAnimationFrame(paintSpeed);
     else speedRaf = null;
   }
@@ -436,14 +457,20 @@ function initTelemetry() {
 
   function updateSpeed() {
     ticking = false;
+    const y = window.scrollY;
+    const delta = y - lastY;
+    lastY = y;
+    if (delta > 0.5) direction = 1;
+    else if (delta < -0.5) direction = -1;
+
     const doc = document.documentElement;
     const max = doc.scrollHeight - window.innerHeight;
-    const depth = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 100;
+    const depth = max > 0 ? Math.min(100, Math.max(0, (y / max) * 100)) : 100;
     speedTarget = depth;
     kickSpeed();
-    // No scroll for 450ms: let the needle fall back toward zero
+    // No scroll for 450ms: clutch in, let the needle fall back toward zero
     clearTimeout(coastTimer);
-    coastTimer = setTimeout(() => { speedTarget = 0; kickSpeed(); }, 450);
+    coastTimer = setTimeout(() => { direction = 0; speedTarget = 0; kickSpeed(); }, 450);
   }
   window.addEventListener('scroll', () => {
     if (!ticking) { ticking = true; requestAnimationFrame(updateSpeed); }

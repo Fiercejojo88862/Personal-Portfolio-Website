@@ -385,11 +385,20 @@ kbd { background: #16241a; border: 1px solid var(--accent-dark); border-bottom-w
 .gear-track span {
   font-family: ui-monospace, Consolas, monospace; font-size: .72rem;
   color: #33543f;
+  transition: color .25s ease, text-shadow .25s ease;
 }
+.gear-track span.on { color: #4ade80; text-shadow: 0 0 10px rgba(74,222,128,.75); }
 .gear-value {
+  display: inline-block;
   font-family: ui-monospace, Consolas, monospace; font-size: .9rem;
   color: #04120a; background: #4ade80; border-radius: 4px;
   padding: 0 .35rem; box-shadow: 0 0 10px rgba(74,222,128,.45);
+  min-width: 2.1em; text-align: center;
+}
+.gear-value.gear-shift { animation: gear-shift .34s cubic-bezier(.34,1.4,.64,1); }
+@keyframes gear-shift {
+  from { transform: translateY(-4px) scale(1.12); opacity: .35; }
+  to   { transform: none; opacity: 1; }
 }
 
 .dash-foot {
@@ -430,6 +439,7 @@ kbd { background: #16241a; border: 1px solid var(--accent-dark); border-bottom-w
 }
 @media (prefers-reduced-motion: reduce) {
   .gauge-needle, .gauge-fill, .odo-wheel > span, .odo-stack, .odo-stack > span, .fuel-bar { transition: none; }
+  .gear-value.gear-shift { animation: none; }
   .dash-status::before { animation: none; }
 }
 
