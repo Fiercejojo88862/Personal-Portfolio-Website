@@ -186,6 +186,15 @@
     if (!arg) { line('cat: missing file operand. Try: cat about.txt', 'err'); return; }
     var name = arg.replace(/^\.\//, '');
 
+    if (name.toLowerCase() === 'cat') {
+      line('meow.', 'ok');
+      line('cat: cat is not a file. opening the original nyan cat instead...', 'muted');
+      if (!openPlayer('QH2-TGUlwu4', 'nyan-cat', 'nyan nyan nyan', 'Nyan Cat [original]')) {
+        line('popup blocked - open player.html?v=QH2-TGUlwu4 manually.', 'err');
+      }
+      return;
+    }
+
     if (cwd === '~/projects' && PROJECTS[name]) {
       line(PROJECTS[name].desc, 'out');
       line('open ' + name + '  ->  opens the full case study', 'muted');
@@ -308,8 +317,23 @@
   /* ---------------- Easter eggs ---------------- */
   function rickroll() {
     line('Never gonna give you up...', 'ok');
-    line('opening in a new tab. You were warned.', 'muted');
-    window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener');
+    line('autoplaying in a new tab. You were warned.', 'muted');
+    if (!openPlayer('dQw4w9WgXcQ', 'rickroll', 'you were warned', 'Never gonna give you up')) {
+      line('popup blocked - open player.html, or allow popups for this site.', 'err');
+    }
+  }
+
+  function openPlayer(videoId, name, note, title) {
+    var url = 'player.html?v=' + encodeURIComponent(videoId) +
+      '&name=' + encodeURIComponent(name || 'rickroll') +
+      '&note=' + encodeURIComponent(note || '') +
+      '&title=' + encodeURIComponent(title || '');
+    var win = window.open(url, '_blank');
+    if (win) {
+      try { win.opener = null; } catch (e) {}
+      return true;
+    }
+    return false;
   }
 
   function coffee() {
