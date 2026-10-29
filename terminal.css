@@ -1,0 +1,168 @@
+/* ============================================================
+   terminal.css — interactive shell widget
+   Self-contained: remove this file + its tags to revert.
+   ============================================================ */
+
+.term {
+  --term-accent: #4ade80;
+  --term-dim: #7f9c88;
+  position: relative;
+  margin-top: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #050a06;
+  box-shadow: 0 24px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.04);
+  overflow: hidden;
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+}
+
+/* ---------- Title bar ---------- */
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .55rem .85rem;
+  background: linear-gradient(180deg, #0d1710, #081009);
+  border-bottom: 1px solid var(--border);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  color: var(--term-dim);
+}
+.term-dots { display: inline-flex; gap: .35rem; }
+.term-dots i {
+  width: .6rem; height: .6rem;
+  border-radius: 50%;
+  background: #2a3a30;
+  display: block;
+}
+.term-dots i:nth-child(1) { background: #ff5f57; }
+.term-dots i:nth-child(2) { background: #febc2e; }
+.term-dots i:nth-child(3) { background: #28c840; }
+.term-title { color: #cfe6d6; }
+.term-tag {
+  margin-left: auto;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: .05rem .5rem;
+  color: var(--term-dim);
+  font-size: .66rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* ---------- Screen ---------- */
+.term-body {
+  position: relative;
+  padding: .85rem .95rem 0;
+  max-height: 21rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  font-size: clamp(.78rem, 1.6vw, .9rem);
+  line-height: 1.65;
+  scrollbar-width: thin;
+  scrollbar-color: #24402c #050a06;
+}
+.term-body::-webkit-scrollbar { width: 10px; }
+.term-body::-webkit-scrollbar-thumb { background: #24402c; border-radius: 6px; }
+
+.term-out { white-space: pre-wrap; overflow-wrap: anywhere; }
+.term-line { margin: 0 0 .1rem; }
+.term-line.cmd { color: #eafff1; }
+.term-ps1 { color: var(--term-accent); }
+.term-line.out { color: #cfe6d6; }
+.term-line.muted { color: var(--term-dim); }
+.term-line.err { color: #fca5a5; }
+.term-line.ok { color: var(--term-accent); }
+.term-line a { color: var(--accent-bright); }
+.term-line a:hover { color: #fff; }
+.term-line.gap { margin-bottom: .6rem; }
+
+/* ---------- Input row ---------- */
+.term-form {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  margin-top: .35rem;
+  padding: .55rem .95rem .7rem;
+  background: linear-gradient(180deg, rgba(5,10,6,.85), #050a06 40%);
+  border-top: 1px solid rgba(30,46,34,.7);
+  transition: box-shadow .2s ease;
+}
+.term-form:focus-within { box-shadow: inset 0 0 0 2px rgba(74,222,128,.28); }
+.term-prompt { color: var(--term-accent); white-space: nowrap; }
+.term-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  padding: .15rem 0;
+  color: #eafff1;
+  font: inherit;
+  caret-color: var(--term-accent);
+}
+.term-input:focus { outline: none; }
+.term-input::placeholder { color: #4b6455; }
+
+/* Keep the input's label hidden even if the site-wide helper is missing */
+.term .sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Hint row ---------- */
+.term-hint {
+  margin: .6rem 0 0;
+  font-size: .8rem;
+  color: var(--muted);
+}
+.term-hint kbd {
+  background: #16241a;
+  border: 1px solid var(--accent-dark);
+  border-radius: 6px;
+  padding: .05rem .4rem;
+  color: var(--accent-bright);
+  font-family: inherit;
+  font-size: .78em;
+}
+
+/* ---------- Matrix theme (theme matrix) ---------- */
+.term.matrix {
+  border-color: #22c55e;
+  box-shadow: 0 0 34px rgba(34,197,94,.25), inset 0 0 70px rgba(34,197,94,.08);
+}
+.term.matrix .term-line.out,
+.term.matrix .term-line.muted,
+.term.matrix .term-line.cmd {
+  color: #4ade80;
+  text-shadow: 0 0 8px rgba(74,222,128,.45);
+}
+.term.matrix .term-body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(74,222,128,.07) 0 1px, transparent 1px 3px);
+  animation: term-scan 7s linear infinite;
+}
+@keyframes term-scan { to { transform: translateY(3px); } }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 520px) {
+  .term-body { max-height: 18rem; }
+  .term-prompt { display: none; }
+  .term-title { font-size: .68rem; }
+}
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .term.matrix .term-body::after { animation: none; }
+}
+html.a11y-calm .term.matrix .term-body::after { animation: none !important; }
