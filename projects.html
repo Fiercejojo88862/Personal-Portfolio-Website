@@ -76,11 +76,12 @@
               <img data-scrub-scale src="assets/lock-studio.png" alt="Screenshot of the omarchy lock screen customizer app" width="1853" height="1135" loading="lazy" />
               <div class="project-body">
                 <h3>omarchy-lock-studio</h3>
-                <p>Python web app (127.0.0.1:8731) to customize the Omarchy lock screen: clock, profile + welcome line, dev quotes, MPRIS media, background picker with auto-upscale, theme text color, backup/restore. Generates <code>LockView.qml</code> preserving PAM auth.</p>
-                <p class="stack">Python · QML · HTML/CSS/JS · Linux</p>
+                <p>Python web app (127.0.0.1:8731) to customize the Omarchy lock screen: clock, profile + welcome line, dev quotes, MPRIS media, background picker with auto-upscale, theme text color, backup/restore, plus IR-camera face unlock ported into the generated view. Generates <code>LockView.qml</code> preserving PAM auth.</p>
+                <p class="stack">Python · QML · HTML/CSS/JS · PAM · Linux</p>
                 <ul class="highlights">
                   <li>Backup/restore so a bad theme never breaks your lock screen</li>
                   <li>Preserves the password field and PAM authentication</li>
+                  <li>Face unlock inside the custom view, with a single owner of the Wayland session lock</li>
                   <li>Background picker with automatic upscaling</li>
                 </ul>
                 <p><a href="project-lock-studio.html">Read the case study →</a></p>

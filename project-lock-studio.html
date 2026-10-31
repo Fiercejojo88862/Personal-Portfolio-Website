@@ -11,7 +11,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Joseph Michael Shaker" />
   <meta property="og:title" content="omarchy-lock-studio | Case Study" />
-  <meta property="og:description" content="Case study: omarchy-lock-studio, a Python web app that customizes the Omarchy Linux lock screen without breaking PAM authentication." />
+  <meta property="og:description" content="Case study: omarchy-lock-studio, a Python web app that customizes the Omarchy Linux lock screen — clock, quotes, media, face unlock — without breaking PAM authentication." />
   <meta property="og:url" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/project-lock-studio.html" />
   <meta property="og:image" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/og-cover.png" />
   <meta property="og:image:width" content="1200" />
@@ -19,7 +19,7 @@
   <meta property="og:image:alt" content="Joseph Michael Shaker, Software and Data Engineering" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="omarchy-lock-studio | Case Study" />
-  <meta name="twitter:description" content="Case study: omarchy-lock-studio, a Python web app that customizes the Omarchy Linux lock screen without breaking PAM authentication." />
+  <meta name="twitter:description" content="Case study: omarchy-lock-studio, a Python web app that customizes the Omarchy Linux lock screen — clock, quotes, media, face unlock — without breaking PAM authentication." />
   <meta name="twitter:image" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/og-cover.png" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="motion.css" />
@@ -77,15 +77,18 @@
           <li>Python</li>
           <li>QML</li>
           <li>HTML/CSS/JS</li>
+          <li>PAM</li>
           <li>Linux</li>
         </ul>
         <p><img data-scrub-scale src="assets/lock-studio.png" alt="Screenshot of the omarchy lock screen customizer app" width="1853" height="1135" loading="lazy" style="width:100%;height:auto;border-radius:14px;border:1px solid var(--border)" /></p>
         <h3>What it does</h3>
         <p>A local web app (served on port 8731) that customizes the Omarchy lock screen: clock, profile with editable welcome line, dev quotes, MPRIS media display, background picker with automatic upscaling, theme and custom text colors, plus backup and restore. It generates <code>LockView.qml</code> while preserving the password field and PAM authentication.</p>
+        <p>It also now carries <strong>face unlock</strong>. omaFace's IR-camera PAM flow was ported into the generated view and service, so the lock screen I style is the same one that recognises me — the custom clock, quotes and background sit above a live face indicator, and the password always keeps working.</p>
         <h3>Hardest problem</h3>
         <p>A stale dev server once re-wrote a broken <code>LockView.qml</code> and killed the lock screen. The fix became process: relaunch the app (it takes over port 8731) before clicking Apply, and back up on every write.</p>
+        <p>The second was lock ownership. After installing a second lock plugin, my styled screen disappeared: the lock still engaged, it just showed a password field on a plain wallpaper, and <em>nothing</em> appeared in the logs. <code>ext-session-lock</code> grants exactly one owner per session, so when two plugins each ship a <code>WlSessionLock</code> the loser is ignored silently and no QML error is ever raised. I diagnosed it by fingerprinting the rendered layout (stock lock screens have no clock, profile or quotes), then resolved it by running a single locker: the face-unlock PAM flow and its status-file plumbing were ported into my own <code>LockView.qml</code> and <code>Service.qml</code>, the rival plugin was disabled, its post-update hook neutralised so an <code>omarchy update</code> cannot hand the lock back, and the generator template was patched so regenerating the view can't drop the ported code.</p>
         <h3>Outcome</h3>
-        <p>My daily-driver lock screen, themed end to end, with a safety net that makes experimenting free.</p>
+        <p>My daily-driver lock screen, themed end to end and face-aware, with a safety net that makes experimenting free — and one owner of the session lock instead of two fighting for it.</p>
         <h3>Links</h3>
         <ul class="project-links">
           <li><a class="btn btn-primary" href="https://github.com/Fiercejojo88862" rel="noopener">GitHub profile ↗</a></li>
