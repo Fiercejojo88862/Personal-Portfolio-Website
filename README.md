@@ -1,4 +1,4 @@
-# Portfolio Website: Joseph Michael Shaker
+# Portfolio Website: Joseph M Shaker
 
 Personal portfolio for Software and Data Engineering Technology undergrad (Newark, NJ).
 Static HTML/CSS/JS. No build step. Deploys to GitHub Pages.
