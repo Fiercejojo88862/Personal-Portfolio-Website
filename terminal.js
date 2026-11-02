@@ -39,7 +39,7 @@
   var PROJECTS = {
     'lock-studio': {
       file: 'project-lock-studio.html',
-      desc: 'omarchy-lock-studio - Python web app that themes the Omarchy lock screen without breaking PAM login.'
+      desc: 'Omarchy Lock Studio - Python web app that themes the Omarchy lock screen without breaking PAM login.'
     },
     'homelab': {
       file: 'project-homelab.html',
