@@ -34,7 +34,7 @@ I'm Joseph, 20, a Software and Data Engineering Technology undergraduate commuti
 
 Education: B.S. Software and Data Engineering Technology (major approved June 2026). Fall 2026 courses set with advisor Ms. Reyes.
 
-Interests: Linux desktop customization (Omarchy/Hyprland), self-hosted media (Jellyfin stack), CAD in SolidWorks, DIY auto repair (Mercedes GL450), and gym training at Crunch Fitness Aberdeen.
+Interests: Linux desktop customization (Omarchy/Hyprland), self-hosted media (Jellyfin stack), CAD in SolidWorks, DIY auto repair (Mercedes GL450), and strength training at Crunch Fitness.
 2026Built omarchy-lock-studio (Python web customizer for lock screen)
 2024Deployed Docker media stack: Jellyfin, Radarr, qBittorrent, Prowlarr
 2023Built Squarespace fleet-booking widget (HTML/CSS)
