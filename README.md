@@ -1,108 +1,105 @@
 # Portfolio Website: Joseph M Shaker
 
-Personal portfolio for Software and Data Engineering Technology undergrad (Newark, NJ).
-Static HTML/CSS/JS. No build step. Deploys to GitHub Pages.
+Personal portfolio for a Software and Data Engineering Technology undergraduate in
+Newark, NJ. Static HTML, CSS, and vanilla JavaScript. No build step, no framework.
+
+- **Live website:** https://fiercejojo88862.github.io/Personal-Portfolio-Website/index.html
+- **Repository:** https://github.com/Fiercejojo88862/Personal-Portfolio-Website
+
+## Project description
+
+A five-page portfolio documenting my path through software and data engineering:
+coursework, Python tooling, a self-hosted Docker media stack, and web front-ends I
+have built. The site is hand-written on purpose: no framework and no bundler, so
+every layout, interaction, and accessibility decision is visible in the source.
+
+Pages:
+
+| Page | Contents |
+| --- | --- |
+| `index.html` | Hero, stats, garage telemetry widget, interactive terminal, featured work |
+| `about.html` | Background, story, principles, everyday kit, hobbies |
+| `projects.html` | Project carousel, GitHub repository cards, build notes and gotchas |
+| `skills.html` | Languages, tools, practices, learning roadmap |
+| `contact.html` | Contact details and a client-validated contact form |
+| `project-lock-studio.html` | Case study: Omarchy Lock Studio |
+| `project-homelab.html` | Case study: Docker media homelab |
+| `project-lubelogger.html` | Case study: LubeLogger |
 
 ## Features
-- Home, About, Projects, Skills, Contact sections (semantic HTML5)
-- Responsive CSS + media queries (desktop / tablet / phone)
-- Hamburger nav, JS project carousel with keyboard support, typed hero effect
-- Contact form with client-side validation
-- Accessibility: skip link, alt text, focus styles, contrast, reduced-motion support
+
+- Semantic HTML5 landmarks and a valid heading outline on every page.
+- Responsive CSS with breakpoints for desktop, tablet, and phone.
+- Hamburger navigation, keyboard shortcuts (`1`-`5`, `/`, `?`), and a project
+  carousel with keyboard support.
+- Car-style telemetry: odometer counts visits, speedometer follows scroll depth,
+  tachometer counts pages seen, fuel gauge shows how much of the site you explored.
+- In-browser terminal with real commands and easter eggs.
+- Accessibility: skip link, alt text, visible focus rings, reduced-motion support,
+  and an Alt+A preferences panel (text size, contrast, link underlines, readable
+  text, pause motion).
+- Contact form with client-side validation and an obfuscated email address.
+- Open Graph, Twitter Card, and JSON-LD metadata with a 1200x630 preview image.
 
 ## View locally
+
 ```bash
-cd portfolio-websiteResponsive Web Developer|
-
-Software and Data Engineering Technology undergrad in Newark, NJ. I build Linux tools, web apps, and homelab systems: C++, Node.js, Docker, and modern HTML/CSS/JS.
-View Projects
-Contact Me
-
-    📍 Aberdeen, NJ
-    🎓 Software & Data Engineering Tech
-    🐧 Omarchy / Hyprland on Arch
-
-Headshot photo of Joseph Michael Shaker
-
-Joseph M. Shaker
-
-Software + Data Engineering
-C++Node.jsDockerLinux
-About Me
-
-I'm Joseph, 20, a Software and Data Engineering Technology undergraduate commuting to university in Newark, NJ. I work across software and systems: web front-ends, Python tooling, C++, and a Docker homelab.
-
-Education: B.S. Software and Data Engineering Technology (major approved June 2026). Fall 2026 courses set with advisor Ms. Reyes.
-
-Interests: Linux desktop customization (Omarchy/Hyprland), self-hosted media (Jellyfin stack), CAD in SolidWorks, DIY auto repair (Mercedes GL450), and strength training at Crunch Fitness.
-2026Built Omarchy Lock Studio (Python web customizer for lock screen)
-2024Deployed Docker media stack: Jellyfin, Radarr, qBittorrent, Prowlarr
-2023Built Squarespace fleet-booking widget (HTML/CSS)
-Quick facts
-
-    Laptop: ASUS Vivobook S16, 32GB / 1TB
-    OS: Windows 11 + Arch/CachyOS (Omarchy)
-    Phone: iPhone 13 Pro
-
-Get in touch
-Projects
-
-Three featured builds. Use the carousel controls or keyboard arrows.
-Screenshot of the omarchy lock screen customizer app
-Omarchy Lock Studio
-
-Python web app (127.0.0.1:8731) to customize the Omarchy lock screen: clock, profile + welcome line, dev quotes, MPRIS media, background picker with auto-upscale, theme text color, backup/restore. Generates LockView.qml preserving PAM auth.
-
-Python · QML · HTML/CSS/JS · Linux
-
-GitHub profile →
-Screenshot of Docker homelab containers dashboard
-Docker Media Homelab
-
-Self-hosted media stack with Jellyfin, Radarr, qBittorrent, and Prowlarr. Solved volume permissions, indexer API integration, and container networking on Arch Linux.
-
-Docker Compose · Linux · Networking
-
-GitHub profile →
-Screenshot of LubeLogger vehicle maintenance tracker
-LubeLogger: Vehicle Maintenance
-
-Self-hosted vehicle maintenance tracking (LubeLogger): service records, costs, and reminders.
-
-Self-hosted · Docker · HTML/CSS
-
-GitHub profile →
-Mockup of this portfolio website on laptop and phone screens
-This Portfolio (HTML/CSS/JS)
-
-Semantic HTML5, responsive CSS with media queries, accessible hamburger nav, JS carousel, validated contact form, and scroll-reveal animations. Deployed to GitHub Pages and the NJIT student server.
-
-Semantic HTML · CSS · Vanilla JS
-
-Back to top →
-‹ Prev
-
+git clone https://github.com/Fiercejojo88862/Personal-Portfolio-Website.git
+cd Personal-Portfolio-Website
 python3 -m http.server 8000
-# open http://localhost:8000
+# then open http://localhost:8000
 ```
-Or open `index.html` directly in a browser.
+
+Opening `index.html` directly also works, but the terminal, telemetry counter, and
+the `file://` fetch path behave best over HTTP. Any static server is fine
+(`php -S localhost:8000`, `npx serve`, VS Code Live Server).
 
 ## Deploy
-- **GitHub:** push this folder to repo `portfolio-website`, enable Pages (branch main, root `/`).
-- **Vercel:** New Project → import repo → root `/` → Deploy (no build command).
 
-## Notes
-- Project images are inline SVGs in `assets/` (no external deps).
-- Contact form validates client-side only; connect Formspree for real delivery.
+GitHub Pages serves the `main` branch root. To publish: commit and push to `main`.
+
+```
+Settings -> Pages -> Source: Deploy from a branch -> main -> / (root) -> Save
+```
+
+## Documentation
+
+- [`AGENTS.md`](AGENTS.md): repository guide for AI coding agents, file map,
+  conventions, and known pitfalls.
+- [`TESTING.md`](TESTING.md): test plan (links, responsive layout, keyboard and
+  accessibility, JavaScript, deployment) with recorded results.
+- [`REPORT.md`](REPORT.md): submission report covering features, challenges, the
+  Codex mistake I caught and fixed, and device screenshots.
 
 ## Site telemetry (visitor counter)
-- `index.html#telemetry` shows a car-style instrument cluster: odometer = total visits, speedometer = scroll depth, tachometer = pages seen this session, fuel = share of the 5 main pages explored.
-- Counts come from [abacus.jasoncameron.dev](https://abacus.jasoncameron.dev), a free serverless hit counter (no cookies, no account). Namespace: `fiercejojo88862-portfolio`; keys: `site` and `page-<slug>`.
-- Total visits increment once per browser session. Reset/inspect with:
+
+- `index.html#telemetry` shows a car-style instrument cluster: odometer = total
+  visits, speedometer = scroll depth, tachometer = pages seen this session,
+  fuel = share of the five main pages explored.
+- Counts come from [abacus.jasoncameron.dev](https://abacus.jasoncameron.dev), a
+  free serverless hit counter (no cookies, no account). Namespace:
+  `fiercejojo88862-portfolio`; keys: `site` and `page-<slug>`.
+- Total visits increment once per browser session. Inspect with:
   `curl https://abacus.jasoncameron.dev/get/fiercejojo88862-portfolio/site`
-- The footer odometer chip on every page reads the same total.
 - To swap counters, edit the `TELEMETRY` object at the bottom of `script.js`.
+- If the service is unreachable the odometer shows `--` and the rest of the page
+  is unaffected.
 
 ## Social preview / SEO
-- `assets/og-cover.png` (1200×630) is the link preview image.
-- Every page has canonical, Open Graph, Twitter Card, and JSON-LD `Person` metadata.
+
+- `assets/og-cover.png` (1200x630) is the link preview image.
+- Every page carries canonical, Open Graph, Twitter Card, and JSON-LD `Person`
+  metadata.
+
+## Notes and acknowledgments
+
+- All images are local files in `assets/`; no external fonts, icon packs, or CDN
+  dependencies.
+- The contact form validates in the browser only and does not send mail. Real
+  contact goes through the email address on the contact page.
+- Reference docs used while building: [MDN Web Docs](https://developer.mozilla.org/),
+  [WCAG 2.2 quick reference](https://www.w3.org/WAI/WCAG22/quickref/),
+  [Jellyfin documentation](https://jellyfin.org/docs/), and the
+  [Omarchy](https://github.com/basecamp/omarchy) project.
+- Built with AI coding assistance (Codex and OpenCode). Commits are my own and
+  each change was reviewed in the browser before it was pushed.
