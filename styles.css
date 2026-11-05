@@ -76,7 +76,11 @@ a { color: var(--accent-bright); }
 .section-alt { background: var(--bg2); }
 .section-sub { color: var(--muted); }
 .two-col { display: grid; grid-template-columns: 1.4fr .8fr; gap: 2rem; }
-h2 { font-size: 2rem; margin-top: 0; }
+h1, h2 { font-size: 2rem; margin-top: 0; }
+/* Cards and subsections promoted from h3 to h2 keep the smaller card scale */
+.h-compact { font-size: 1.17rem; margin: 1em 0 .5rem; color: #fff; }
+.project-body .h-compact { margin-top: 0; }
+.mini-card .h-compact { font-size: 1.1rem; margin: 0 0 .4rem; }
 .mt { margin-top: 2.5rem; }
 .info-card, .skill-group, .contact-form { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
 .timeline { display: grid; gap: .6rem; margin-top: 1rem; }
@@ -253,7 +257,7 @@ kbd { background: #16241a; border: 1px solid var(--accent-dark); border-bottom-w
 }
 @media (max-width: 480px) {
   .hero { padding: 2.5rem 0; }
-  h2 { font-size: 1.6rem; }
+  h1, h2 { font-size: 1.6rem; }
 }
 
 /* ============================================================
