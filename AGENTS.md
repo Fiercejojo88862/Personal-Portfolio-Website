@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Guidance for AI coding agents (Codex, Claude, OpenCode, Copilot) working in this repository.
+Guidance for AI coding agents (Codex, Claude, OpenCode, Gemini) working in this repository.
 
 ## What this project is
 
