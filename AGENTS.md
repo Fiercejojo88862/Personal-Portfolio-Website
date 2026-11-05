@@ -31,10 +31,47 @@ Technology undergraduate in Newark, NJ.
 | `motion.css` / `motion.js` | Entrance animations, aurora, tilt, cursor glow |
 | `a11y.css` / `a11y.js` | Accessibility preference panel (text size, contrast, underline, motion) |
 | `terminal.css` / `terminal.js` | In-browser fake shell widget |
+| `player.css` | Styles for the standalone `player.html` embed |
 | `script.js` | Nav, carousel, form validation, telemetry/hit counter, shortcuts |
 | `assets/` | Headshot, project screenshots, logo, OG cover |
 | `TESTING.md` | Test plan and results |
 | `REPORT.md` | Course submission report |
+
+## Design system
+
+**Palette** (declared once in `:root` in `styles.css`; never hardcode these values)
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `--bg` | `#000000` | Page background |
+| `--bg2` | `#070b07` | Alternating section band |
+| `--card` | `#0e130e` | Cards, panels, terminal window |
+| `--border` | `#1e2e22` | 1px card and input borders |
+| `--text` | `#e9f5ec` | Body copy |
+| `--muted` | `#9db8a4` | Secondary copy, captions, metadata |
+| `--accent` | `#22c55e` | Primary buttons, active nav pill, gauges |
+| `--accent-dark` | `#16a34a` | Borders and hover states |
+| `--accent-bright` | `#4ade80` | Links, eyebrows, small accents |
+
+Every text/background pair clears WCAG AA (lowest measured ratio is 6.4:1).
+
+**Typography.** System UI stack for body copy (`ui-sans-serif`, `Segoe UI`, `system-ui`)
+with a monospace stack for the terminal, stats, and gauge readouts. Fluid headings use
+`clamp()`; the hero h1 is `clamp(2rem, 5vw, 3.25rem)` and page titles are 2rem,
+dropping to 1.6rem under 640px. Headings are `#fff`; body text is `--text`.
+
+**Layout.** Single-column flow capped at `--max` (1080px) with 14px card radius.
+Sections alternate `--bg` and `--bg2`; content blocks use CSS Grid, collapsing to one
+column at the phone breakpoint. Cards share the same shell: `--card` fill, 1px border,
+14px radius, and a subtle accent glow on hover.
+
+**Motion.** Entrance fades and a card tilt live in `motion.css` and only run under
+`prefers-reduced-motion: no-preference`. The accessibility panel's "pause motion"
+switch disables them at runtime by adding `a11y-calm` to `<html>`; JS must check that
+class before animating anything scroll-driven.
+
+**Breakpoints.** 900px (repo grid), 760px (nav collapses to hamburger, two-column
+blocks stack), 620px (single column), with a 640px heading scale step.
 
 ## Run locally
 

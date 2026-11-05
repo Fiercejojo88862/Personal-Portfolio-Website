@@ -93,6 +93,8 @@ h1, h2 { font-size: 2rem; margin-top: 0; }
 .carousel-slide { min-width: 100%; }
 .project-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-right: 1rem; }
 .project-card img { width: 100%; height: auto; display: block; background: #000; border-bottom: 1px solid var(--border); }
+/* Case-study hero screenshot */
+.case-shot { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--border); }
 .project-body { padding: 1.25rem; }
 .project-body h3 { color: #fff; }
 .stack { color: var(--muted); font-size: .95rem; }

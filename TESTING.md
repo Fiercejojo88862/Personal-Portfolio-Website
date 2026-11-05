@@ -24,6 +24,9 @@ Status codes: **PASS**, **FAIL**, **N/A**.
 | L7 | No duplicate `id` attributes | Script counted repeated ids per page | None | PASS |
 | L8 | Real content, no placeholders | Manual read of every page | No lorem ipsum, TODO, or "coming soon" | PASS |
 | L9 | Page titles and canonical/OG metadata present | View source on each page | Unique `<title>`, canonical, OG, Twitter, JSON-LD | PASS |
+| L10 | No inline styles; one external stylesheet per page | `grep -c 'style="' *.html` plus a search for `<style>` blocks | Zero inline style attributes and zero inline `<style>` blocks | PASS (0 in all 9 pages) |
+| L11 | Colours and fonts come from one place | Inspect `:root` in `styles.css` | Every page uses the same tokens, no per-page palette | PASS |
+| L12 | At least three projects with description, image, and link | Read `projects.html` and the three case studies | Each has a screenshot, a written description, and outbound links | PASS |
 
 ## 2. Responsive layout
 
@@ -33,10 +36,11 @@ Status codes: **PASS**, **FAIL**, **N/A**.
 | R2 | Laptop width 1280x800 | Resized window | Same layout, no overlap | PASS |
 | R3 | Tablet width 820x1180 | Responsive mode | Two-column blocks stack, nav collapses | PASS |
 | R4 | Phone width 390x844 | Responsive mode | Single column, hamburger nav, no horizontal scroll | PASS |
-| R5 | Narrow phone 320x568 | Responsive mode | Content readable, telemetry gauge scales down | PASS |
+| R5 | Narrow phone 320x568 | Responsive mode | Content readable, telemetry gauge scales down, no horizontal scroll | PASS |
 | R6 | Images scale, never overflow | Responsive mode | All images fit their container | PASS |
 | R7 | Nav menu opens and closes on phone | Tap hamburger, tap a link, tap hamburger again | Opens, navigates, closes | PASS |
 | R8 | No layout shift from fonts/images | Reload at each width | Stable layout, no jump | PASS |
+| R9 | No sideways scrolling at any width | Check `document.documentElement.scrollWidth > clientWidth` at 320, 390, 768, 1024, 1440 | Equal or narrower at every width | PASS |
 
 ## 3. Keyboard and accessibility
 
@@ -80,6 +84,24 @@ Status codes: **PASS**, **FAIL**, **N/A**.
 | D2 | HTTPS works with no mixed content | Load live URL over HTTPS | No insecure requests | PASS |
 | D3 | Custom error page / missing path | Load a non-existent path | GitHub 404, no broken layout | PASS |
 | D4 | Social preview image | Paste link into a chat client | `assets/og-cover.png` preview appears | PASS |
+
+## 6. Lighthouse accessibility audit
+
+Run in Chrome or Edge: open the live page, DevTools (`F12`) -> Lighthouse tab ->
+Categories: Accessibility only, Device: Mobile -> Analyze page. Repeat for all five
+main pages and record the scores here.
+
+| Page | Accessibility score | Date |
+| --- | --- | --- |
+| `index.html` |  |  |
+| `about.html` |  |  |
+| `projects.html` |  |  |
+| `skills.html` |  |  |
+| `contact.html` |  |  |
+
+Supporting evidence already measured manually: one `<h1>` and a valid heading order on
+every page, alt text on all 30 images, labelled form fields, landmarks, visible focus
+rings, and every text/background pair at or above WCAG AA (lowest ratio 6.4:1).
 
 ## How to re-run
 
