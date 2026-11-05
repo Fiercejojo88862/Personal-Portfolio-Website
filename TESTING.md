@@ -95,7 +95,7 @@ main pages and record the scores here.
 | --- | --- | --- |
 | `index.html` |  |  |
 | `about.html` |  |  |
-| `projects.html` |  |  |
+| `projects.html` | 96 | 2026-11-04 (mobile, via the Lighthouse score checker) |
 | `skills.html` |  |  |
 | `contact.html` |  |  |
 
