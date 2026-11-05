@@ -137,7 +137,7 @@ html.fx-ready .hero h1 .fx-word {
 
 /* ---------- Section headings: growing underline ---------- */
 .section h2, .heading-row h2 { position: relative; padding-bottom: .45rem; }
-.section h2::after, .heading-row h2::after {
+.section h2:not(.h-compact)::after, .heading-row h2::after {
   content: "";
   position: absolute;
   left: 0; bottom: 0;
@@ -324,7 +324,7 @@ html.fx-ready body { animation: fx-page-in .5s ease both; }
   .btn::after { display: none; }
   .ticker { mask-image: none; -webkit-mask-image: none; }
   .timeline-item::before { transform: scaleY(1); transition: none; }
-  .section h2::after, .heading-row h2::after { transform: scaleX(1); transition: none; }
+  .section h2:not(.h-compact)::after, .heading-row h2::after { transform: scaleX(1); transition: none; }
   .feature-card img { animation: none; }
 }
 
