@@ -20,6 +20,7 @@
     'skills.txt': [
       'Languages   HTML/CSS, JavaScript, Node.js, C++, Python',
       'Systems     Arch / Omarchy (Hyprland), Docker Compose, Linux permissions',
+      'Voice       whisper.cpp, Ollama, Piper (offline speech, local LLM)',
       'Tools       Git and GitHub, GitHub Pages, SolidWorks, video editing',
       'Practices   Responsive design, semantic HTML, accessibility, homelab debugging'
     ],
@@ -48,6 +49,10 @@
     'lubelogger': {
       file: 'project-lubelogger.html',
       desc: 'LubeLogger - self-hosted maintenance tracker for fuel, services, costs, and reminders.'
+    },
+    'siri': {
+      file: 'project-siri.html',
+      desc: 'Siri of Omarchy - offline push-to-talk voice assistant (whisper + Ollama + Piper) that drives Hyprland.'
     }
   };
 

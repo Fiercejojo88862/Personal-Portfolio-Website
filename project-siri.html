@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study: Siri of Omarchy, an offline push-to-talk voice assistant for Hyprland that transcribes locally with whisper, routes intent with Ollama, and acts through hyprctl." />
+  <title>Siri of Omarchy | Case Study</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="canonical" href="https://fiercejojo88862.github.io/Personal-Portfolio-Website/project-siri.html" />
+  <meta name="theme-color" content="#000000" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Joseph Michael Shaker" />
+  <meta property="og:title" content="Siri of Omarchy | Case Study" />
+  <meta property="og:description" content="Case study: Siri of Omarchy, an offline push-to-talk voice assistant for Hyprland. Local speech recognition, a local LLM for intent, and desktop actions confirmed out loud." />
+  <meta property="og:url" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/project-siri.html" />
+  <meta property="og:image" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Joseph Michael Shaker, Software and Data Engineering" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Siri of Omarchy | Case Study" />
+  <meta name="twitter:description" content="Case study: Siri of Omarchy, an offline push-to-talk voice assistant for Hyprland. Local speech recognition, a local LLM for intent, and desktop actions confirmed out loud." />
+  <meta name="twitter:image" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/og-cover.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="motion.css" />
+  <link rel="stylesheet" href="a11y.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Joseph Michael Shaker",
+    "url": "https://fiercejojo88862.github.io/Personal-Portfolio-Website/",
+    "image": "https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/headshot.jpg",
+    "jobTitle": "Software and Data Engineering Technology Student",
+    "description": "Software and Data Engineering Technology undergraduate building Linux tools, web apps, and self-hosted systems.",
+    "address": {"@type": "PostalAddress", "addressLocality": "Aberdeen", "addressRegion": "NJ", "addressCountry": "US"},
+    "alumniOf": {"@type": "CollegeOrUniversity", "name": "New Jersey Institute of Technology"},
+    "knowsAbout": ["C++", "Python", "Node.js", "Docker", "Linux", "HTML", "CSS", "JavaScript", "SolidWorks"],
+    "sameAs": [
+      "https://github.com/Fiercejojo88862",
+      "https://www.linkedin.com/in/joseph-shaker-548a49247"
+    ]
+  }
+  </script>
+</head>
+<body id="top" data-page="siri">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Joseph Shaker home"><img class="logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>Joseph S.</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link active">Projects</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" aria-labelledby="case-heading">
+      <div class="container">
+        <p><a href="projects.html">← All projects</a></p>
+        <div class="heading-row">
+          <h1 id="case-heading">Siri of Omarchy</h1>
+          <img class="heading-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" />
+        </div>
+        <p class="section-sub">Offline push-to-talk voice assistant for Hyprland. Built 2026. Sole builder.</p>
+        <ul class="chips">
+          <li>Python</li>
+          <li>Bash</li>
+          <li>whisper.cpp</li>
+          <li>Ollama</li>
+          <li>PipeWire</li>
+          <li>Hyprland</li>
+        </ul>
+        <p><img data-scrub-scale src="assets/siri-pipeline.svg" alt="Diagram of the pipeline: the Insert key starts pw-record, whisper-cli transcribes, Ollama turns the words into intent JSON, and hyprctl acts while Piper speaks the reply" width="1200" height="400" loading="lazy" class="case-shot" /></p>
+        <h2 class="h-compact">What it does</h2>
+        <p>Press <kbd>Insert</kbd>, say the thing, press <kbd>Insert</kbd> again. She records 16 kHz mono audio, transcribes it locally with whisper, turns the sentence into JSON with a local qwen2.5:3b model, and then does it: launches apps, switches workspaces, moves windows, reads the weather, sets timers and reminders, reads my merged iCloud calendars, and works the system controls. Every action is confirmed out loud in a British female voice.</p>
+        <p>There is no API key, no cloud round trip, and no account. The microphone stream is written to a temp file, transcribed, and deleted; no audio leaves the machine.</p>
+        <h2 class="h-compact">How it works</h2>
+        <ul>
+          <li><code>bin/local-voice</code> toggles a detached <code>pw-record</code> process, so the key press returns instantly instead of blocking the session.</li>
+          <li><code>whisper-cli</code> runs the <code>base.en</code> model (142 MB) over the recording, offline, on the CPU.</li>
+          <li><code>bin/local-voice-exec</code> sends the transcript to Ollama and gets back JSON: an action, plus the arguments it needs.</li>
+          <li>The router maps that JSON onto Hyprland 0.56's <code>hl.dsp.*</code> calls through <code>hyprctl</code>, or onto a plain app launch, calendar lookup, or timer.</li>
+          <li><code>bin/local-voice-tts</code> speaks the confirmation with Piper, mastered to 48 kHz / 24-bit so it does not sound like a robot in a can.</li>
+        </ul>
+        <h2 class="h-compact">Desktop control</h2>
+        <p>Beyond scripted actions, she can drive the desktop through hypruse. She reads the window tree and the named controls a window exposes, so "click Save" finds Save by name instead of guessing pixel coordinates. That covers clicks, scrolling, key combinations, typing and pressing Enter, and opening an app on a named workspace, all over the same Wayland protocols as <code>wlrctl</code>, with no root, no ydotool, and no portals.</p>
+        <p>Computer use is where a voice assistant stops being cute, so it is fenced in: locked sessions, password fields, and system authentication dialogs always refuse, and the auth flag is never passed. Shutdown, reboot, and logout require a spoken "yes" before they run, and the router rejects destructive shell and file output outright. A panic key (<kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>Backspace</kbd>) kills any in-flight click or keystroke, <code>HYPRUSE_DRYRUN=1</code> rehearses without touching anything, and <code>HYPRUSE_JOURNAL=1</code> writes an audit log.</p>
+        <h2 class="h-compact">Hardest problems</h2>
+        <p>The first was the voice stack on a laptop with no GPU. The stock coqui-tts install hard-fails on newer Python because its torchcodec dependency links CUDA libraries, even though XTTS inference only needs librosa and soundfile. Rather than fight the dependency, I wrote <code>patches/apply-patches.py</code> to skip the torchcodec import, shim a removed <code>isin_mps_friendly</code> helper, and fall back to soundfile when loading audio. The script is idempotent and skips cleanly when the patches are not needed, so a re-run never breaks a working install. I then moved the everyday voice to Piper, which answers in well under a second.</p>
+        <p>The second was picking the voice. Instead of trusting a demo page, I compared median pitch and range across Piper's British female voices on identical text against a recording of my own voice, and the southern English one won. It sounds like a person agreeing with me rather than a screen reader reading a log.</p>
+        <h2 class="h-compact">Privacy</h2>
+        <p>The repository blocks recordings, models, calendar configuration, tokens, caches, and runtime state from git. Calendar share links stay on disk with owner-only permissions. The installer links scripts into <code>~/.local/bin</code>, downloads models on demand, and never overwrites an existing configuration.</p>
+        <h2 class="h-compact">Outcome</h2>
+        <p>This is the assistant I actually talk to every day on my Arch daily driver. Dictating a timer, asking what is on my calendar for tomorrow, or parking a window on workspace 3 takes one key and one sentence, and nothing about my voice or my schedule leaves the laptop.</p>
+        <h2 class="h-compact">Links</h2>
+        <ul class="project-links">
+          <li><a class="btn btn-primary" href="https://github.com/Fiercejojo88862/omarchy-siri" rel="noopener">Source on GitHub ↗</a></li>
+          <li><a href="https://github.com/ggerganov/whisper.cpp" rel="noopener">whisper.cpp ↗</a></li>
+          <li><a href="https://ollama.com" rel="noopener">Ollama ↗</a></li>
+          <li><a href="https://github.com/rhasspy/piper" rel="noopener">Piper voices ↗</a></li>
+          <li><a href="https://hypr.land" rel="noopener">Hyprland, the compositor it drives ↗</a></li>
+        </ul>
+        <p class="small-note">Public, MIT-licensed, and installed with <code>./install.sh</code>. Needs Hyprland 0.56+, whisper-cli, Ollama, PipeWire, ffmpeg, and Python 3.10+.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand"><img class="footer-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>© <span id="year"></span> Joseph Michael Shaker. Built with semantic HTML, CSS, and vanilla JS.</span></p>
+      <p class="footer-links"><a href="#top">Back to top ↑</a></p>
+      <p class="visit-chip-wrap"><a class="visit-chip" href="index.html#telemetry" aria-label="Site odometer: total visits">ODOMETER <b data-visit-total>--</b> VISITS</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="motion.js" defer></script>
+  <script src="a11y.js" defer></script>
+</body>
+</html>
