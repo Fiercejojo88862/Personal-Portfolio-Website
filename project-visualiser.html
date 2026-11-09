@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study: Visualiser by Fiercejojo88862, a song-reactive desktop visualiser for Linux that reads MPRIS, captures PipeWire audio for beat detection, and fetches matching clips." />
+  <title>Visualiser by Fiercejojo88862 | Case Study</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="canonical" href="https://fiercejojo88862.github.io/Personal-Portfolio-Website/project-visualiser.html" />
+  <meta name="theme-color" content="#000000" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Joseph Michael Shaker" />
+  <meta property="og:title" content="Visualiser by Fiercejojo88862 | Case Study" />
+  <meta property="og:description" content="Case study: a song-reactive visualiser for Linux. MPRIS track tracking, PipeWire beat detection, time-synced lyrics, and matching clips cut on the beat." />
+  <meta property="og:url" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/project-visualiser.html" />
+  <meta property="og:image" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/og-cover.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Joseph Michael Shaker, Software and Data Engineering" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Visualiser by Fiercejojo88862 | Case Study" />
+  <meta name="twitter:description" content="Case study: a song-reactive visualiser for Linux. MPRIS track tracking, PipeWire beat detection, time-synced lyrics, and matching clips cut on the beat." />
+  <meta name="twitter:image" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/og-cover.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="motion.css" />
+  <link rel="stylesheet" href="a11y.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Joseph Michael Shaker",
+    "url": "https://fiercejojo88862.github.io/Personal-Portfolio-Website/",
+    "image": "https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/headshot.jpg",
+    "jobTitle": "Software and Data Engineering Technology Student",
+    "description": "Software and Data Engineering Technology undergraduate building Linux tools, web apps, and self-hosted systems.",
+    "address": {"@type": "PostalAddress", "addressLocality": "Aberdeen", "addressRegion": "NJ", "addressCountry": "US"},
+    "alumniOf": {"@type": "CollegeOrUniversity", "name": "New Jersey Institute of Technology"},
+    "knowsAbout": ["C++", "Python", "Node.js", "Docker", "Linux", "HTML", "CSS", "JavaScript", "SolidWorks"],
+    "sameAs": [
+      "https://github.com/Fiercejojo88862",
+      "https://www.linkedin.com/in/joseph-shaker-548a49247"
+    ]
+  }
+  </script>
+</head>
+<body id="top" data-page="visualiser">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Joseph Shaker home"><img class="logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>Joseph S.</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="projects.html" class="nav-link active">Projects</a></li>
+          <li><a href="skills.html" class="nav-link">Skills</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" aria-labelledby="case-heading">
+      <div class="container">
+        <p><a href="projects.html">← All projects</a></p>
+        <div class="heading-row">
+          <h1 id="case-heading">Visualiser by Fiercejojo88862</h1>
+          <img class="heading-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" />
+        </div>
+        <p class="section-sub">Song-reactive desktop visualiser for Linux. Built 2026. Sole builder.</p>
+        <ul class="chips">
+          <li>Python</li>
+          <li>JavaScript</li>
+          <li>Canvas</li>
+          <li>Docker</li>
+          <li>PipeWire</li>
+          <li>MPRIS</li>
+          <li>NumPy</li>
+        </ul>
+        <p><img data-scrub-scale src="assets/visualiser.jpg" alt="Cover art for Visualiser by Fiercejojo88862: a dark SUV on a glowing green and cyan audio waveform" width="1200" height="896" loading="lazy" class="case-shot" /></p>
+        <h2 class="h-compact">What it does</h2>
+        <p>Whatever is playing on my machine, the visualiser reacts to it. It follows the current track over MPRIS, listens to the system audio monitor for the beat, pulls time-synced lyrics, and fetches short clips and GIFs that match the song. Everything runs in a Docker container that starts when I open the app and stops when I close it.</p>
+        <p>Open it fullscreen and it is a stage: a blurred artwork backdrop, a procedural canvas of orbs and particles, and a clip cut onto the beat, driven by the actual audio and not a fake animation timer.</p>
+        <h2 class="h-compact">How the sync works</h2>
+        <p>Three layers share one clock.</p>
+        <ul>
+          <li><strong>Reactive.</strong> The PipeWire monitor of the output sink is captured with <code>parec</code>, transformed at about 47 frames per second, and split into sub, bass, low-mid, mid, high, and air envelopes with a per-band adaptive floor and ceiling. Bass drives scale, highs drive rotation and blur, mids drive saturation, air drives contrast.</li>
+          <li><strong>Beat grid.</strong> A spectral-flux onset envelope feeds an autocorrelation tempo estimate and a phase-locked loop, so cuts land on beats instead of near them. Tempo locks in about three seconds, and onset bursts plus a loudness spike fire drop events that force a cut, a glitch, a hue jump, and a particle burst.</li>
+          <li><strong>Semantic selection.</strong> Lyrics and an audio-derived mood (frenetic, energetic, euphoric, melancholic, calm, dreamy, gritty) become search queries. Results are ranked by keyword and mood overlap, damped by a recency penalty so the same three clips do not loop all night, prefetched in the first seconds of a track, and cached by query so repeat moods get faster.</li>
+        </ul>
+        <p>Streamed sources give you no file to analyse, so live tracking is the primary path. While a track plays once, the engine also records the monitor stream and, after the track ends, analyses it offline into a cached per-track beat timeline. The second listen is tighter than the first.</p>
+        <h2 class="h-compact">Five layers on screen</h2>
+        <ol>
+          <li>A blurred album-art backdrop that tints the whole stage.</li>
+          <li>A single additive canvas: six band-driven glow orbs, a particle field where every particle owns one log-spaced band from 32 Hz to 16 kHz and is pushed outward by that band, a 64-bar radial ring, an ultra-thin bottom spectrum, expanding beat rings, and a hue that follows the mood.</li>
+          <li>The clip itself on two crossfading decks, transformed by the audio (scale, rotate, saturation, contrast, hue) and composited with <code>screen</code>.</li>
+          <li>A post pass with bloom and RGB channel-split chromatic aberration on transients, sampled at a third of the resolution and switched off automatically below roughly 42 frames per second rather than stuttering.</li>
+          <li>A HUD with the title, artist, mood, BPM, a metronome ring, a scrubbable progress bar, transport buttons, and a rotating vinyl thumbnail. It fades after 12 seconds of no mouse movement, and <kbd>H</kbd> hides it outright.</li>
+        </ol>
+        <p>Colour comes from the cover: it is downscaled with <code>ffmpeg</code> to a 32 by 32 raw buffer, quantised in NumPy into a four-colour palette, and the most vivid cluster tints the orbs, ring, progress bar, and glow, falling back to the mood hue when there is no artwork.</p>
+        <h2 class="h-compact">Hardest problems</h2>
+        <p>The one that taught me the most was a bare <code>except</code> that hid a total failure. Offline beat timelines used librosa, and on this machine (Python 3.14) the import raises inside the image: numba's JIT cache cannot find a locator for <code>librosa/core/notation.py</code>. Because the builder caught exceptions with a bare handler, it returned "no beats found" forever, which looks exactly like a track with no beats. Nothing crashed and nothing logged. It is now the same NumPy maths as the live tracker, verified at 72, 100, and 128 BPM on synthetic material.</p>
+        <p>The second was letterboxing that lives inside the file. Provider memes are often padded into a square or 4:3 frame, a 640 by 480 file carrying 640 by 360 of picture, so <code>object-fit: cover</code> still leaked black bars whenever the window was not exactly 16:9. Each clip is now measured with <code>cropdetect</code> at import and, when bars are found, transcoded once to a cropped <code>*.fit.webm</code> with dark scenes rejected so the detector cannot collapse, and the decision memoised next to the clip.</p>
+        <p>A smaller one: moving the folder used to break startup with a bare "Directory not found", because the installed systemd unit still pointed at the old path. The installer now renders the unit and desktop entry with the checkout's real path, and the launcher repairs a stale unit on its own.</p>
+        <h2 class="h-compact">Container as a reproducibility wrapper</h2>
+        <p>The image is Arch-based on purpose, so mesa, Qt, and ffmpeg inside it match the host's GPU stack. The container needs the host's Wayland socket, PipeWire socket, session bus, and render node, so it is not a sandbox; it is a way to pin a 3.2 GB toolchain that I can rebuild the same way. It runs as my uid, uses NumPy only (no librosa, numba, or scipy), and the systemd user unit treats the container process as the service, so closing the window really does stop everything.</p>
+        <h2 class="h-compact">Privacy and limits</h2>
+        <p>Tenor shut down its public API on 30 June 2026, so the provider is KLIPY, built by the ex-Tenor engineers, with GIPHY as a paid fallback. Both forbid re-hosting their media, so the clip cache is local playback only, capped and evicted least-recently-used at 6 GB. The offline analysis records the system monitor, analyses it, then deletes the wav, and that recording can be turned off entirely. The renderer keeps its "Powered by KLIPY" attribution on screen.</p>
+        <h2 class="h-compact">Outcome</h2>
+        <p>It is the thing I open when I want music to look like something. When the provider is unconfigured, rate limited, or offline, the procedural layer keeps running instead of going black, so the visual never depends on a network call. My own GIF folder works with no API key at all, and new files are picked up while it runs.</p>
+        <h2 class="h-compact">Links</h2>
+        <ul class="project-links">
+          <li><a class="btn btn-primary" href="https://github.com/Fiercejojo88862/visualiser-by-fiercejojo88862" rel="noopener">Source on GitHub ↗</a></li>
+          <li><a href="https://partner.klipy.com" rel="noopener">KLIPY ↗</a></li>
+          <li><a href="https://lrclib.net" rel="noopener">LRCLIB lyrics ↗</a></li>
+          <li><a href="https://pipewire.org" rel="noopener">PipeWire ↗</a></li>
+          <li><a href="https://docs.docker.com" rel="noopener">Docker ↗</a></li>
+        </ul>
+        <p class="small-note">Public source, installed with <code>bin/install.sh</code>. Needs Linux with Wayland or X11, Docker, Python 3, and PipeWire or PulseAudio plus an MPRIS-aware player for the audio-synced parts.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand"><img class="footer-logo" src="assets/logo.png" alt="Joseph S. logo" width="512" height="512" /><span>© <span id="year"></span> Joseph Michael Shaker. Built with semantic HTML, CSS, and vanilla JS.</span></p>
+      <p class="footer-links"><a href="#top">Back to top ↑</a></p>
+      <p class="visit-chip-wrap"><a class="visit-chip" href="index.html#telemetry" aria-label="Site odometer: total visits">ODOMETER <b data-visit-total>--</b> VISITS</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="motion.js" defer></script>
+  <script src="a11y.js" defer></script>
+</body>
+</html>

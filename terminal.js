@@ -53,6 +53,10 @@
     'siri': {
       file: 'project-siri.html',
       desc: 'Siri of Omarchy - offline push-to-talk voice assistant (whisper + Ollama + Piper) that drives Hyprland.'
+    },
+    'visualiser': {
+      file: 'project-visualiser.html',
+      desc: 'Visualiser by Fiercejojo88862 - song-reactive visualiser with PipeWire beat detection and beat-synced clips.'
     }
   };
 

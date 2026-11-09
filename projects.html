@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Projects by Joseph Michael Shaker: a lock screen customizer, an offline voice assistant, a Docker homelab, LubeLogger, and this portfolio." />
+  <meta name="description" content="Projects by Joseph Michael Shaker: a lock screen customizer, an offline voice assistant, a song-reactive visualiser, a Docker homelab, LubeLogger, and this portfolio." />
   <title>Projects | Joseph Michael Shaker</title>
   <link rel="icon" href="assets/logo.png" />
   <link rel="canonical" href="https://fiercejojo88862.github.io/Personal-Portfolio-Website/projects.html" />
@@ -11,7 +11,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Joseph Michael Shaker" />
   <meta property="og:title" content="Projects | Joseph Michael Shaker" />
-  <meta property="og:description" content="Projects by Joseph Michael Shaker: Omarchy Lock Studio, Siri of Omarchy, Docker media homelab, LubeLogger, and more." />
+  <meta property="og:description" content="Projects by Joseph Michael Shaker: Omarchy Lock Studio, Siri of Omarchy, Visualiser by Fiercejojo88862, Docker media homelab, LubeLogger, and more." />
   <meta property="og:url" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/projects.html" />
   <meta property="og:image" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/og-cover.png" />
   <meta property="og:image:width" content="1200" />
@@ -19,7 +19,7 @@
   <meta property="og:image:alt" content="Joseph Michael Shaker, Software and Data Engineering" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Projects | Joseph Michael Shaker" />
-  <meta name="twitter:description" content="Projects by Joseph Michael Shaker: Omarchy Lock Studio, Siri of Omarchy, Docker media homelab, LubeLogger, and more." />
+  <meta name="twitter:description" content="Projects by Joseph Michael Shaker: Omarchy Lock Studio, Siri of Omarchy, Visualiser by Fiercejojo88862, Docker media homelab, LubeLogger, and more." />
   <meta name="twitter:image" content="https://fiercejojo88862.github.io/Personal-Portfolio-Website/assets/og-cover.png" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="motion.css" />
@@ -68,11 +68,11 @@
     <section id="projects" class="section section-alt" aria-labelledby="projects-heading">
       <div class="container">
         <h1 id="projects-heading">Projects</h1>
-        <p class="section-sub">Four featured builds. Use the carousel controls or keyboard arrows.</p>
+        <p class="section-sub">Five featured builds. Use the carousel controls or keyboard arrows.</p>
 
         <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Project showcase">
           <div class="carousel-track" id="carousel-track">
-            <article class="project-card carousel-slide" id="project-1" aria-roledescription="slide" aria-label="1 of 4">
+            <article class="project-card carousel-slide" id="project-1" aria-roledescription="slide" aria-label="1 of 5">
               <img data-scrub-scale src="assets/lock-studio.png" alt="Screenshot of the omarchy lock screen customizer app" width="1853" height="1135" loading="lazy" />
               <div class="project-body">
                 <h2 class="h-compact">Omarchy Lock Studio</h2>
@@ -87,7 +87,7 @@
                 <p><a href="project-lock-studio.html">Read the documentation →</a></p>
               </div>
             </article>
-            <article class="project-card carousel-slide" id="project-2" aria-roledescription="slide" aria-label="2 of 4">
+            <article class="project-card carousel-slide" id="project-2" aria-roledescription="slide" aria-label="2 of 5">
               <img data-scrub-scale src="assets/homelab.png" alt="Screenshot of Docker homelab containers dashboard" width="941" height="566" loading="lazy" />
               <div class="project-body">
                 <h2 class="h-compact">Docker Media Homelab</h2>
@@ -101,7 +101,7 @@
                 <p><a href="project-homelab.html">Read the documentation →</a></p>
               </div>
             </article>
-            <article class="project-card carousel-slide" id="project-3" aria-roledescription="slide" aria-label="3 of 4">
+            <article class="project-card carousel-slide" id="project-3" aria-roledescription="slide" aria-label="3 of 5">
               <img data-scrub-scale src="assets/lubelogger.png" alt="Screenshot of LubeLogger garage showing my 2011 Mercedes GL450" width="1678" height="1013" loading="lazy" />
               <div class="project-body">
                 <h2 class="h-compact">LubeLogger: Vehicle Maintenance</h2>
@@ -115,7 +115,7 @@
                 <p><a href="project-lubelogger.html">Read the documentation →</a></p>
               </div>
             </article>
-            <article class="project-card carousel-slide" id="project-4" aria-roledescription="slide" aria-label="4 of 4">
+            <article class="project-card carousel-slide" id="project-4" aria-roledescription="slide" aria-label="4 of 5">
               <img data-scrub-scale src="assets/siri-pipeline.svg" alt="Diagram of the offline voice pipeline: the Insert key starts pw-record, whisper-cli transcribes, Ollama routes the intent, and hyprctl acts while Piper speaks the reply" width="1200" height="400" loading="lazy" />
               <div class="project-body">
                 <h2 class="h-compact">Siri of Omarchy</h2>
@@ -127,6 +127,20 @@
                   <li>Power actions and destructive output gated behind a spoken yes</li>
                 </ul>
                 <p><a href="project-siri.html">Read the documentation →</a></p>
+              </div>
+            </article>
+            <article class="project-card carousel-slide" id="project-5" aria-roledescription="slide" aria-label="5 of 5">
+              <img data-scrub-scale src="assets/visualiser.jpg" alt="Cover art for Visualiser by Fiercejojo88862: a dark SUV on a glowing green and cyan audio waveform" width="1200" height="896" loading="lazy" />
+              <div class="project-body">
+                <h2 class="h-compact">Visualiser by Fiercejojo88862</h2>
+                <p>Song-reactive visualiser for Linux. It follows the current track over MPRIS, captures the system audio monitor to find the beat, pulls time-synced lyrics, and cuts matching clips across two crossfading decks, all on a five-layer stage of blurred artwork, particles, orbs, and post-processing. It runs in a Docker container that starts and stops with the window.</p>
+                <p class="stack">Python · JavaScript · Canvas · Docker · PipeWire · MPRIS</p>
+                <ul class="highlights">
+                  <li>Beat grid from spectral flux, autocorrelation tempo, and a phase-locked loop</li>
+                  <li>Cached per-track beat timelines so the second listen is tighter</li>
+                  <li>Falls back to the procedural layer when the provider is offline or rate limited</li>
+                </ul>
+                <p><a href="project-visualiser.html">Read the documentation →</a></p>
               </div>
             </article>
           </div>
@@ -144,6 +158,7 @@
             <li>Docker Media Homelab : Jellyfin/Radarr stack</li>
             <li>LubeLogger : vehicle maintenance tracking</li>
             <li>Siri of Omarchy : offline push-to-talk voice assistant</li>
+            <li>Visualiser by Fiercejojo88862 : song-reactive visualiser for Linux</li>
           </ul>
         </div>
         <div class="cta-banner">
