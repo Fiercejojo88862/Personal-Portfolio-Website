@@ -17,16 +17,16 @@ Status codes: **PASS**, **FAIL**, **N/A**.
 | --- | --- | --- | --- | --- |
 | L1 | Home page loads | Open the live URL | Page renders, hero and telemetry visible | PASS |
 | L2 | All five required pages return HTTP 200 | `curl -o /dev/null -w "%{http_code}"` on index, about, projects, skills, contact | 200 for each | PASS (200, 200, 200, 200, 200) |
-| L3 | Case-study pages return HTTP 200 | Same check on the three `project-*.html` pages | 200 for each | PASS (200, 200, 200) |
+| L3 | Case-study pages return HTTP 200 | Same check on the four `project-*.html` pages | 200 for each | PASS (200, 200, 200, 200) |
 | L4 | Every page links all five pages from the main nav | Compared nav markup on all pages | Identical nav: Home, About, Projects, Skills, Contact | PASS |
 | L5 | No broken local links or missing assets | Script parsed every `href`/`src` in `*.html`, confirmed each local target exists | Zero missing files | PASS |
-| L6 | Every image has `alt` text | Script counted `<img>` tags without `alt=` (30 images total) | Zero missing | PASS (0 of 30) |
+| L6 | Every image has `alt` text | Script counted `<img>` tags without `alt=` (36 images total) | Zero missing | PASS (0 of 36) |
 | L7 | No duplicate `id` attributes | Script counted repeated ids per page | None | PASS |
 | L8 | Real content, no placeholders | Manual read of every page | No lorem ipsum, TODO, or "coming soon" | PASS |
 | L9 | Page titles and canonical/OG metadata present | View source on each page | Unique `<title>`, canonical, OG, Twitter, JSON-LD | PASS |
-| L10 | No inline styles; one external stylesheet per page | `grep -c 'style="' *.html` plus a search for `<style>` blocks | Zero inline style attributes and zero inline `<style>` blocks | PASS (0 in all 9 pages) |
+| L10 | No inline styles; one external stylesheet per page | `grep -c 'style="' *.html` plus a search for `<style>` blocks | Zero inline style attributes and zero inline `<style>` blocks | PASS (0 in all 10 pages) |
 | L11 | Colours and fonts come from one place | Inspect `:root` in `styles.css` | Every page uses the same tokens, no per-page palette | PASS |
-| L12 | At least three projects with description, image, and link | Read `projects.html` and the three case studies | Each has a screenshot, a written description, and outbound links | PASS |
+| L12 | At least three projects with description, image, and link | Read `projects.html` and the four case studies | Each has a screenshot, a written description, and outbound links | PASS |
 
 ## 2. Responsive layout
 
@@ -123,7 +123,7 @@ rings, and every text/background pair at or above WCAG AA (lowest ratio 6.4:1).
 2. **Live status codes**
 
    ```bash
-   for p in index about projects skills contact project-lock-studio project-homelab project-lubelogger; do
+   for p in index about projects skills contact project-lock-studio project-homelab project-lubelogger project-siri; do
      printf "%s " "$p"
      curl -s -o /dev/null -w "%{http_code}\n" \
        "https://fiercejojo88862.github.io/Personal-Portfolio-Website/$p.html"

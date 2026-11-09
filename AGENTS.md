@@ -26,6 +26,7 @@ Technology undergraduate in Newark, NJ.
 | `project-lock-studio.html` | Case study: Omarchy Lock Studio |
 | `project-homelab.html` | Case study: Docker media homelab |
 | `project-lubelogger.html` | Case study: LubeLogger |
+| `project-siri.html` | Case study: Siri of Omarchy offline voice assistant |
 | `player.html` | Hidden YouTube embed used by the terminal easter eggs (`noindex`) |
 | `styles.css` | Base layout, components, responsive breakpoints |
 | `motion.css` / `motion.js` | Entrance animations, aurora, tilt, cursor glow |

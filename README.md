@@ -25,6 +25,7 @@ Pages:
 | `project-lock-studio.html` | Case study: Omarchy Lock Studio |
 | `project-homelab.html` | Case study: Docker media homelab |
 | `project-lubelogger.html` | Case study: LubeLogger |
+| `project-siri.html` | Case study: Siri of Omarchy, offline voice assistant |
 
 ## Features
 
