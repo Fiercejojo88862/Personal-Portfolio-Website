@@ -27,6 +27,7 @@ Technology undergraduate in Newark, NJ.
 | `project-homelab.html` | Case study: Docker media homelab |
 | `project-lubelogger.html` | Case study: LubeLogger |
 | `project-siri.html` | Case study: Siri of Omarchy offline voice assistant |
+| `project-visualiser.html` | Case study: Visualiser by Fiercejojo88862 |
 | `player.html` | Hidden YouTube embed used by the terminal easter eggs (`noindex`) |
 | `styles.css` | Base layout, components, responsive breakpoints |
 | `motion.css` / `motion.js` | Entrance animations, aurora, tilt, cursor glow |

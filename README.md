@@ -26,6 +26,7 @@ Pages:
 | `project-homelab.html` | Case study: Docker media homelab |
 | `project-lubelogger.html` | Case study: LubeLogger |
 | `project-siri.html` | Case study: Siri of Omarchy, offline voice assistant |
+| `project-visualiser.html` | Case study: Visualiser by Fiercejojo88862 |
 
 ## Features
 
